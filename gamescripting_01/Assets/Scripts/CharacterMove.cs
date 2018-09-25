@@ -17,6 +17,15 @@ public class CharacterMove : MonoBehaviour {
 	//non-stick player
 	private float MoveVelocity;
 
+	//Sprite Flipper
+	private SpriteRenderer MySpriteRenderer;
+	
+	//awake
+	void Awake() {
+		//get ref to sprite renderer comp on this obj
+		MySpriteRenderer = GetComponent<SpriteRenderer>();
+	}
+
 	// Use this for initialization
 	void Start () {
 	
@@ -29,6 +38,20 @@ public class CharacterMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//sprite flipping
+		//if var isn't empty
+		if(MySpriteRenderer != null) {
+			//Press A key
+			if(Input.GetKeyDown(KeyCode.A)) {
+				//flip sprite
+				MySpriteRenderer.flipX = true;
+			}
+			if(Input.GetKeyDown(KeyCode.D))
+            {
+                // flip the sprite
+                MySpriteRenderer.flipX = false;
+            }
+		}
 
 		// jump
 		if(Input.GetKeyDown (KeyCode.Space) && grounded){
@@ -63,4 +86,6 @@ public class CharacterMove : MonoBehaviour {
 	public void Jump(){
 		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
 	}
+
+
 }
