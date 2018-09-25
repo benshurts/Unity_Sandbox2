@@ -7,6 +7,9 @@ public class CharacterMove : MonoBehaviour {
 	public int MoveSpeed;
 	public float JumpHeight;
 	private bool DoubleJump;
+	//sprites
+	public sprite Left;
+	public sprite Right;
 
 	//Player grounded variables
 	public Transform groundCheck;
@@ -17,8 +20,7 @@ public class CharacterMove : MonoBehaviour {
 	//non-stick player
 	private float MoveVelocity;
 
-	//Sprite Flipper
-	private SpriteRenderer MySpriteRenderer;
+
 	
 	//awake
 	void Awake() {
@@ -38,32 +40,44 @@ public class CharacterMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//sprite change
+		if(this.gameObject.GetComponent<SpriteRenderer>().sprite) = Left && (Input.GetKeyDown(KeyCode.D)) {
+			sprite = Right;
+		}
+		
+	
+
+
+
 		//sprite flipping
 		//if var isn't empty
-		if(MySpriteRenderer != null) {
-			//Press A key
-			if(Input.GetKeyDown(KeyCode.A)) {
-				//flip sprite
-				MySpriteRenderer.flipX = true;
-			}
-			if(Input.GetKeyDown(KeyCode.D))
-            {
-                // flip the sprite
-                MySpriteRenderer.flipX = false;
-            }
-		}
+		// if(MySpriteRenderer != null) {
+		// 	//Press A key
+		// 	if(Input.GetKeyDown(KeyCode.A)) {
+		// 		//flip sprite
+		// 		MySpriteRenderer.flipX = true;
+		// 	}
+		// 	if(Input.GetKeyDown(KeyCode.D))
+        //     {
+        //         // flip the sprite
+        //         MySpriteRenderer.flipX = false;
+        //     }
+		// }
 
 		// jump
 		if(Input.GetKeyDown (KeyCode.Space) && grounded){
+			Debug.Log("Jump");
 			Jump();
 		}
 		//double jump
 		if(grounded) 
 			DoubleJump = false;
+			// Debug.Log("Grounded");
 
 		if(Input.GetKeyDown (KeyCode.Space) && !DoubleJump && !grounded) {
 			Jump();
 			DoubleJump = true;
+			Debug.Log("Double Jump");
 		}
 
 		//non-stick player
@@ -85,6 +99,7 @@ public class CharacterMove : MonoBehaviour {
 
 	public void Jump(){
 		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+		Debug.Log("Void Jump Func");
 	}
 
 
