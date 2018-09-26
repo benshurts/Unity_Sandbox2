@@ -41,13 +41,16 @@ public class CharacterMove : MonoBehaviour {
 		//jumping
 		if(isGrounded == true) {
 			extraJumps = extraJumpsValue;
+			Debug.Log ("CanJump", gameObject);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Space) && extraJumps < 0) {
 			rb.velocity = Vector2.up * jumpForce;
 			extraJumps--;
+			Debug.Log ("Double Jump", gameObject);
 		} else if(Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true) {
 			rb.velocity = Vector2.up * jumpForce;
+			Debug.Log ("No more jump", gameObject);
 		}
 	}
 
