@@ -2,105 +2,57 @@
 using System.Collections;
 
 public class CharacterMove : MonoBehaviour {
+	//vars
+	public float speed;
+	public float jumpForce;
+	private float moveInput;
 
-	// Player Movement Variables
-	public int MoveSpeed;
-	public float JumpHeight;
-	private bool DoubleJump;
-	//sprites
-	public sprite Left;
-	public sprite Right;
+	private Rigidbody2D rb;
 
-	//Player grounded variables
+	//jumping
+	private bool isGrounded;
 	public Transform groundCheck;
-	public float groundCheckRadius;
+	public float checkRadius;
 	public LayerMask whatIsGround;
-	private bool grounded;
+	//extra jumps
+	private int extraJumps;
+	public int extraJumpsValue;
+	private bool facingRight = true;
 
-	//non-stick player
-	private float MoveVelocity;
-
-
-	
-	//awake
-	void Awake() {
-		//get ref to sprite renderer comp on this obj
-		MySpriteRenderer = GetComponent<SpriteRenderer>();
-	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-
-	void FixedUpdate () {
-		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-	}
-
-	// Update is called once per frame
-	void Update () {
-		//sprite change
-		if(this.gameObject.GetComponent<SpriteRenderer>().sprite) = Left && (Input.GetKeyDown(KeyCode.D)) {
-			sprite = Right;
-		}
-		
-	
-
-
-
-		//sprite flipping
-		//if var isn't empty
-		// if(MySpriteRenderer != null) {
-		// 	//Press A key
-		// 	if(Input.GetKeyDown(KeyCode.A)) {
-		// 		//flip sprite
-		// 		MySpriteRenderer.flipX = true;
-		// 	}
-		// 	if(Input.GetKeyDown(KeyCode.D))
-        //     {
-        //         // flip the sprite
-        //         MySpriteRenderer.flipX = false;
-        //     }
-		// }
-
-		// jump
-		if(Input.GetKeyDown (KeyCode.Space) && grounded){
-			Debug.Log("Jump");
-			Jump();
-		}
-		//double jump
-		if(grounded) 
-			DoubleJump = false;
-			// Debug.Log("Grounded");
-
-		if(Input.GetKeyDown (KeyCode.Space) && !DoubleJump && !grounded) {
-			Jump();
-			DoubleJump = true;
-			Debug.Log("Double Jump");
-		}
-
-		//non-stick player
-		MoveVelocity = 0f;
-		
-		// move
-		if(Input.GetKey (KeyCode.D)){
-			// GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-			MoveVelocity = MoveSpeed;
-		}
-		if(Input.GetKey (KeyCode.A)){
-			// GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-			MoveVelocity = -MoveSpeed;
-		}
-
-		GetComponent<Rigidbody2D>().velocity = new Vector2(MoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
+	void Start() {
+		extraJumps = extraJumpsValue;
+		rb = GetComponent<Rigidbody2D>();
 
 	}
 
-	public void Jump(){
-		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
-		Debug.Log("Void Jump Func");
+	void FixedUpdate() {
+		moveInput = Input.GetAxisRaw("Horizontal");
+
+		rb.velocity = new Vector2(moveInput*speed, rb.velocity.y);
+
+		if(facingRight == false && moveInput > 0) {
+			flip();
+		} else if(facingRight == true && moveInput < 0) {
+			flip();
+		}
+	}
+	void Update() {
+		if(isGrounded == true) {
+			extraJumps = extraJumpsValue;
+		}
+
+		if(Input.GetKeyDown(KeyCode.Space) && extraJumps < 0) {
+			rb.velocity = Vector2.up * jumpForce;
+			extraJumps--;
+		} else if(Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true) {
+			rb.velocity = Vector2.up * jumpForce;
+		}
 	}
 
-
+	void flip() {
+		facingRight = !facingRight;
+		Vector3 scaler = transform.localScale;
+		scaler.x *= -1;
+		transform.localScale = scaler;
+	}
 }
