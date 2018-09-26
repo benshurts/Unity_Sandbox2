@@ -26,6 +26,7 @@ public class CharacterMove : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		//move left and right + sprite flip
 		moveInput = Input.GetAxisRaw("Horizontal");
 
 		rb.velocity = new Vector2(moveInput*speed, rb.velocity.y);
@@ -37,6 +38,7 @@ public class CharacterMove : MonoBehaviour {
 		}
 	}
 	void Update() {
+		//jumping
 		if(isGrounded == true) {
 			extraJumps = extraJumpsValue;
 		}
