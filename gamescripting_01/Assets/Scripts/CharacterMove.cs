@@ -31,7 +31,7 @@ public class CharacterMove : MonoBehaviour {
 		rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 	}
 	void update() {
-		if(Input.GetKeyDown(KeyCode.Space) && extraJumps > 0){
+		if(Input.GetKeyDown(KeyCode.W) && extraJumps > 0){
 			rb.velocity = Vector2.up * jumpForce;
 			Debug.Log("jumpForce");
 		}
