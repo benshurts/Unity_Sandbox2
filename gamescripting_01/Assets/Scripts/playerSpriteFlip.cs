@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class playerSpriteFlip : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	private bool facingRight = true;
+
+	private float moveInput;
+
+	void FixedUpdate() {
+		moveInput = Input.GetAxisRaw("Horizontal");
+		if(facingRight == false && moveInput > 0){
+			flip();
+		} else if(facingRight == true && moveInput < 0) {
+			flip();
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void flip() {
+		facingRight = !facingRight;
+		Vector3 Scalar = transform.localScale;
+		Scalar.x *= -1;
+		transform.localScale = Scalar;
 	}
 }

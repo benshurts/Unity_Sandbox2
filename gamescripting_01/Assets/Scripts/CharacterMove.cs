@@ -7,25 +7,38 @@ public class CharacterMove : MonoBehaviour {
 	public float jumpForce;
 	private float moveInput;
 
+	//jumping vars
+	private bool isGrounded;
+	public Transform groundCheck;
+	public float checkRadius;
+	public LayerMask whatIsGround;
+	public int extraJumps;
+
 	public GameObject flippedSprites;
 
 	private Rigidbody2D rb;
 
-	//sprite flipping
-	private bool facingRight = true;
+	
 
-	private void Start() {
+	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 	}
 
-	private void FixedUpdate() {
+	void FixedUpdate() {
+		isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+
 		moveInput = Input.GetAxisRaw("Horizontal");
+		rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 	}
-	void flip(){
-		facingRight = !facingRight;
-		Vector3 Scaler = transform.localScale;
-		Scaler.x *= -1;
-		transform.localScale = Scaler;
+	void update() {
+		if(Input.GetKeyDown(KeyCode.Space) && extraJumps > 0){
+			rb.velocity = Vector2.up * jumpForce;
+			Debug.Log("jumpForce");
+		}
+		if(isGrounded == true){
+			Debug.Log("Grounded");
+		}
 	}
+
 
 }
