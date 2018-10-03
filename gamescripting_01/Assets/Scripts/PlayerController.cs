@@ -5,6 +5,6 @@ using UnityEngine;
 public class PlayerController : BoxPhysics {
 
 	void Update() {
-		targetVelocity = Vector2.left;
+		
 	}
 }
