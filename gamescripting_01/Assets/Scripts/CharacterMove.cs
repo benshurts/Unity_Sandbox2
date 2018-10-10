@@ -2,43 +2,48 @@
 using System.Collections;
 
 public class CharacterMove : MonoBehaviour {
-	//Vars
-	public float speed;
-	public float jumpForce;
-	private float moveInput;
 
-	//jumping vars
-	private bool isGrounded;
+	// Player Movement Variables
+	public int MoveSpeed;
+	public float JumpHeight;
+
+	//Player grounded variables
 	public Transform groundCheck;
-	public float checkRadius;
+	public float groundCheckRadius;
 	public LayerMask whatIsGround;
-	public int extraJumps;
+	private bool grounded;
 
-	public GameObject flippedSprites;
-
-	private Rigidbody2D rb;
-
+	// Use this for initialization
+	void Start () {
+	
+	}
 	
 
-	void Start() {
-		rb = GetComponent<Rigidbody2D>();
+	void FixedUpdate () {
+		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 	}
 
-	void FixedUpdate() {
-		isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+	// Update is called once per frame
+	void Update () {
 
-		moveInput = Input.GetAxisRaw("Horizontal");
-		rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-	}
-	void update() {
-		if(Input.GetKeyDown(KeyCode.W) && extraJumps > 0){
-			rb.velocity = Vector2.up * jumpForce;
-			Debug.Log("jumpForce");
+		// This code makes the character jump
+		if(Input.GetKeyDown (KeyCode.Space)&& grounded){
+			Jump();
 		}
-		if(isGrounded == true){
-			Debug.Log("Grounded");
+
+		// This code makes the character move from side to side using the A&D keys
+		if(Input.GetKey (KeyCode.D)){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			
 		}
+		if(Input.GetKey (KeyCode.A)){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			
+		}
+
 	}
 
-
+	public void Jump(){
+		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+	}
 }
