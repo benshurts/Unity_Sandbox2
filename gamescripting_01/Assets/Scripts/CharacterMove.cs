@@ -13,6 +13,7 @@ public class CharacterMove : MonoBehaviour {
 	public LayerMask whatIsGround;
 	private bool grounded;
 
+
 	// Use this for initialization
 	void Start () {
 	
@@ -34,6 +35,7 @@ public class CharacterMove : MonoBehaviour {
 		// This code makes the character move from side to side using the A&D keys
 		if(Input.GetKey (KeyCode.D)){
 			GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			
 			
 		}
 		if(Input.GetKey (KeyCode.A)){

@@ -3,8 +3,9 @@ using System.Collections;
 
 public class levelManager : MonoBehaviour {
 
+
 	public GameObject CurrentCheckPoint;
-	public Rigidbody2D PC;
+	public Rigidbody2D Player;
 
 	// Particles
 	public GameObject DeathParticle;
@@ -23,37 +24,37 @@ public class levelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// PC = FindObjectOfType<Rigidbody2D> ();
+		// Player = FindObjectOfType<Rigidbody2D> ();
 	}
-	
+		
 	public void RespawnPlayer(){
 		StartCoroutine ("RespawnPlayerCo");
 	}
 
 	public IEnumerator RespawnPlayerCo(){
 		//Generate Death Particle
-		Instantiate (DeathParticle, PC.transform.position, PC.transform.rotation);
-		//Hide PC
-		// PC.enabled = false;
-		PC.GetComponent<Renderer> ().enabled = false;
+		Instantiate (DeathParticle, Player.transform.position, Player.transform.rotation);
+		//Hide Player
+		// player.enabled = false;
+		Player.GetComponent<Renderer> ().enabled = false;
 		// Gravity Reset
-		GravityStore = PC.GetComponent<Rigidbody2D>().gravityScale;
-		PC.GetComponent<Rigidbody2D>().gravityScale = 0f;
-		PC.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		GravityStore = Player.GetComponent<Rigidbody2D>().gravityScale;
+		Player.GetComponent<Rigidbody2D>().gravityScale = 0f;
+		Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		// Point Penalty
 		ScoreManager.AddPoints(-PointPenaltyOnDeath);
 		//Debug Message
-		Debug.Log ("PC Respawn");
+		Debug.Log ("Player Respawn");
 		//Respawn Delay
 		yield return new WaitForSeconds (RespawnDelay);
 		//Gravity Restore
-		PC.GetComponent<Rigidbody2D>().gravityScale = GravityStore;
-		//Match PCs transform position
-		PC.transform.position = CurrentCheckPoint.transform.position;
-		//Show PC
-		// PC.enabled = true;
-		PC.GetComponent<Renderer> ().enabled = true;
-		//Spawn PC
+		Player.GetComponent<Rigidbody2D>().gravityScale = GravityStore;
+		//Match Players transform position
+		Player.transform.position = CurrentCheckPoint.transform.position;
+		//Show Player
+		// player.enabled = true;
+		Player.GetComponent<Renderer> ().enabled = true;
+		//Spawn Particle
 		Instantiate (RespawnParticle, CurrentCheckPoint.transform.position, CurrentCheckPoint.transform.rotation);
 	}
 }

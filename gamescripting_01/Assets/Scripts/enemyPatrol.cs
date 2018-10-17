@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyPatrol : MonoBehaviour {
+public class enemyPatrol : MonoBehaviour {
 
 	// Movement Variables
 	public float MoveSpeed;

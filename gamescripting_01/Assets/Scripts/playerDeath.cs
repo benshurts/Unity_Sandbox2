@@ -5,16 +5,17 @@ using UnityEngine;
 public class playerDeath : MonoBehaviour {
 
 	//this variable data type is a class or calling a different script
-	public levelManager levelManager;
+	public levelManager LevelManager;
 
-	//init
-	void Start() {
-		levelManager = FindObjectOfType<levelManager>();
-
+	// Use this for initialization
+	void Start () {
+		LevelManager = FindObjectOfType <levelManager>();
 	}
-	void OnTriggerEnter2D(Collider2D other) {
-		if(other.name == "Player") {
-			levelManager.RespawnPlayer();
+	
+	void OnTriggerEnter2D(Collider2D other){
+		if(other.name == "Player"){
+			LevelManager.RespawnPlayer();
 		}
-	}
+		
+}
 }
