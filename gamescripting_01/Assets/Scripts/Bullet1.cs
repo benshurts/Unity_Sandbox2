@@ -16,11 +16,21 @@ public class Bullet1 : MonoBehaviour {
 	//add points...
 	public int PointsForKill;
 
+	//bullet sprite stuff
+	public Sprite[] normalBullets;
+	
+
 	void Start() {
 
 		if(Player.transform.localScale.x < 0) {
 			Speed = -Speed;
 		}
+	}
+
+	private void Awake() {
+		int arrayIdx = Random.Range(0, normalBullets.Length);
+		Sprite chooseBulletSprite = normalBullets[arrayIdx];
+		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
 	}
 
 	void Update() {
