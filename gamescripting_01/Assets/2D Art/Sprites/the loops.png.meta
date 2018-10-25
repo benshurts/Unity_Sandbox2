@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: 8ea4be62147cf4f4e9e83fc26ad0d7dc
+guid: 064f43d5431c2b444baf74252f361bc9
 TextureImporter:
   fileIDToRecycleName:
-    21300000: uistuff_0
-    21300002: uistuff_1
-    21300004: uistuff_2
+    21300000: the loops_0
+    21300002: the loops_1
+    21300004: the loops_2
+    21300006: the loops_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -63,7 +64,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -74,7 +75,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -87,7 +88,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: uistuff_0
+      name: the loops_0
       rect:
         serializedVersion: 2
         x: 0
@@ -101,19 +102,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 152d7b8a57117ce4cad7f5b342e7d4fe
+      spriteID: ae408b86691b0094894381ea4126d464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: uistuff_1
+      name: the loops_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 3
-        width: 26
-        height: 26
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,19 +122,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b45b89c7f59475b41989f3bdfbec4225
+      spriteID: 499c19bee66f4ef4b8427c47d13c0ab0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: uistuff_2
+      name: the loops_2
       rect:
         serializedVersion: 2
-        x: 65
-        y: 1
-        width: 30
-        height: 30
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,7 +142,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdc8089dd2f27714b83465627107b9cb
+      spriteID: e65457cfb9b3ff3469acb865ccb632eb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the loops_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5eaaa93db8b4848821c0caf23999ea
       vertices: []
       indices: 
       edges: []
@@ -149,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 81b0f26a68a102f4db6907fba2ae7970
+    spriteID: 76da1586d8db1cc41a8be96f46b3189a
     vertices: []
     indices: 
     edges: []
