@@ -5,20 +5,24 @@ using UnityEngine;
 public class loopsBrother : MonoBehaviour {
 
 public GameObject TheLoops;
-public Sprite Sprite1;
-public Sprite Sprite2;
-public Sprite Sprite3;
-public Sprite Sprite4;
+public GameObject LoopSpawn;
+public Sprite[] LoopSprite;
+// public Sprite ChooseLoops;
+    // private void Start() {
+	// 	GetComponent<SpriteRenderer>().sprite = ChooseLoops;
+    // }
 
-//loop array
-private Sprite[] SpriteList = {};
+	public void Awake() {
+		int arrayIdx = Random.Range (0, LoopSprite.Length);
+		Sprite ChooseLoops = LoopSprite[arrayIdx];
+		GetComponent<SpriteRenderer>().sprite = ChooseLoops;
+		Debug.Log(ChooseLoops);
+	}
 
-    public GameObject Spawn;
-    	private void Start() {
-
-    		for (int i = 0; i < 4; i++)
-    		{
-    			
-    		}
-    	}
+	// public void AllTheLoops() {
+	// 	for (int i = 0; i < 5; i++)
+	// 	{
+	// 		Instantiate(TheLoops, LoopSpawn.position,LoopSpawn.rotation);
+	// 	}
+	// }
 }
