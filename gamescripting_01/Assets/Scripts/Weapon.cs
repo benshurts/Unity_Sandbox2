@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public float fireRate = 0f;
+
+	public float Damage = 10;
+
+	public LayerMask notToHit;
+
+	private float timeToFire = 0f;
+	private Transform firePoint;
+
+	private void Awake() {
+		firePoint = transform.Find("FirePoint");
+		//if no firepoint debug
+		if (firePoint == null) {
+			Debug.LogError("No Firepoint= WHAT?!"); 
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	private void Update() {
+		if(fireRate == 0) {
+			if(Input.GetMouseButtonDown(0)) {
+				Shoot();
+			} else {
+				if(Input.GetMouseButton(0)) && Time.time > timeToFire {
+					timeToFire = Time.time + 1/fireRate;
+					Shoot();
+				}
+			}
+		}
 	}
 }
