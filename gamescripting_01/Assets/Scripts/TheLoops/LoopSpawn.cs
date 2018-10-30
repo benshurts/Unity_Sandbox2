@@ -27,4 +27,11 @@ private bool Spawner;
 		yield return new WaitForSeconds(2);
 		Spawner = true;
 	}
+
+	void Rainbow() {
+		for (int i = 0; i < 5; i++)
+		{
+			//GetComponent<SpriteRenderer>().color
+		}
+	}
 }

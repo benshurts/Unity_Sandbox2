@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TheLoops: {fileID: 0}
-  LoopSpawn: {fileID: 0}
+  LoopSpawn: {fileID: 1951272235237788, guid: 62bf2793df0a28b42836f5d185be7e46, type: 2}
   LoopSprite:
   - {fileID: 21300000, guid: 064f43d5431c2b444baf74252f361bc9, type: 3}
   - {fileID: 21300002, guid: 064f43d5431c2b444baf74252f361bc9, type: 3}

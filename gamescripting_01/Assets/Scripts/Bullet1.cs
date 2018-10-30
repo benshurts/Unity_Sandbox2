@@ -42,6 +42,7 @@ public class Bullet1 : MonoBehaviour {
 			Instantiate(EnemyDeath, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
 			ScoreManager.AddPoints(PointsForKill);
+			
 		}
 
 		Instantiate(ProjectileParticle, transform.position, transform.rotation);

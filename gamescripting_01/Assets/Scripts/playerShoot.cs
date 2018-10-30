@@ -8,6 +8,8 @@ public class playerShoot : MonoBehaviour {
 	public GameObject Projectile;
 	public Sprite[] normalBullets;
 
+	//private float variable = 2f;
+
 	//GameObject BulletPrefab = Resources.Load("Bullet1") as GameObject;
 	
 	void start() {
@@ -25,4 +27,18 @@ public class playerShoot : MonoBehaviour {
 			
 			Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 	}
+
+	//  void Shoot()
+	// {
+	// 	Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	// 	aimPos.z = 0;
+	
+	// 	//Creating the bullet and shooting it
+	// 	var pel = Instantiate(Bullet, Spawn.position, Spawn.rotation);
+	// 	pel.GetComponent<Rigidbody2D>().AddForce(aimPos.normalized * 8000f);
+	// 	//Playing the bullet noise
+	// 	Shot.Play();
+	// 	//shooting and reloading
+	// 	usingBulletPerMag -= 1;
+	// }
 }
