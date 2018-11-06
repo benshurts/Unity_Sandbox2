@@ -25,4 +25,5 @@ public Sprite[] LoopSprite;
 	// 		Instantiate(TheLoops, LoopSpawn.position,LoopSpawn.rotation);
 	// 	}
 	// }
+	
 }
