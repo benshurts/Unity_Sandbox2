@@ -22,7 +22,7 @@ public class Bullet1 : MonoBehaviour {
 
 	void Start() {
 
-		if(Player.transform.localScale.x < 0) {
+		if(Player.transform.localScale.x > 0) {
 			Speed = -Speed;
 		}
 	}

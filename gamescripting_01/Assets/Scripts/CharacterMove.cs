@@ -25,8 +25,8 @@ public class CharacterMove : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-
+	void Update () {		
+		Debug.DrawRay(groundCheck.position,Vector3.left, Color.green ,0.5f);
 		// This code makes the character jump
 		if(Input.GetKeyDown (KeyCode.Space)&& grounded){
 			Jump();
