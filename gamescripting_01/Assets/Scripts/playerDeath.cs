@@ -17,5 +17,6 @@ public class playerDeath : MonoBehaviour {
 			LevelManager.RespawnPlayer();
 		}
 		
-}
+	}
+	
 }
