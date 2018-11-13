@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet1 : MonoBehaviour {
+public class Bullet2 : MonoBehaviour {
 
+	
 	public float Speed;
 	public Rigidbody2D Player;
 
@@ -31,7 +32,6 @@ public class Bullet1 : MonoBehaviour {
 		int arrayIdx = Random.Range(0, normalBullets.Length);
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
 		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
-		
 	}
 
 	void Update() {
@@ -55,6 +55,5 @@ public class Bullet1 : MonoBehaviour {
 		Instantiate(ProjectileParticle, transform.position, transform.rotation);
 		Destroy (gameObject);
 	}
-
 
 }

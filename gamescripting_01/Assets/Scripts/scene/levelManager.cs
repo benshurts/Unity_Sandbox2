@@ -3,6 +3,9 @@ using System.Collections;
 
 public class levelManager : MonoBehaviour {
 
+
+	//ammo
+	public int ammo = 10;
 	public GameObject CurrentCheckPoint;
 	public Rigidbody2D PC;
 
