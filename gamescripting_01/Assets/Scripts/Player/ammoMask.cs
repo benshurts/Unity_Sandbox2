@@ -9,7 +9,7 @@ public class ammoMask : MonoBehaviour {
 	public Sprite CurrentSprite;
 	public Sprite[] spriteMask;
 	private void Start() {
-		ammoLife = GameObject.Find("levelManager").GetComponent<levelManager>().ammo;
+		ammoLife = GameObject.Find("levelManager").GetComponent<levelManager>().ammo += 1;
 	}
 	private void Update() {
 
