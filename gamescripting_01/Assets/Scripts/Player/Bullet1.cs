@@ -30,8 +30,7 @@ public class Bullet1 : MonoBehaviour {
 	private void Awake() {
 		int arrayIdx = Random.Range(0, normalBullets.Length);
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
-		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
-		
+		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;		
 	}
 
 	void Update() {
