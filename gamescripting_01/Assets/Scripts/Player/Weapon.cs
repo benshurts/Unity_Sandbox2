@@ -35,17 +35,17 @@ public class Weapon : MonoBehaviour {
 	}
 
 	void Shoot() {
-		//creating a vector2 towards mouse position
-		Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-		//taking firepoint of tip of gun as vector2
-		Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
-		//raycast
-		RaycastHit2D hit2D = Physics2D.Raycast(firePointPosition,mousePosition-firePointPosition,100,WhatToHit);
-		//debug with gizmos to see line
-		Debug.DrawLine(firePointPosition,(mousePosition-firePointPosition)*100);
-		//show collision
-		// if(hit.collider != null) {
-		// 	Debug.DrawLine(firePointPosition, hit.point, color.red); 
-		// }
+		// //creating a vector2 towards mouse position
+		// Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+		// //taking firepoint of tip of gun as vector2
+		// Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
+		// //raycast
+		// RaycastHit2D hit2D = Physics2D.Raycast(firePointPosition,mousePosition-firePointPosition,100,WhatToHit);
+		// //debug with gizmos to see line
+		// Debug.DrawLine(firePointPosition,(mousePosition-firePointPosition)*100);
+		// //show collision
+		// // if(hit.collider != null) {
+		// // 	Debug.DrawLine(firePointPosition, hit.point, color.red); 
+		// // }
 	}
 }

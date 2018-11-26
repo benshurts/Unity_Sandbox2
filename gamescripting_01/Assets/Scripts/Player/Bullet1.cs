@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet1 : MonoBehaviour {
 
+	public int Ammo;
 	public float Speed;
 	public Rigidbody2D Player;
 
@@ -19,19 +20,22 @@ public class Bullet1 : MonoBehaviour {
 	//bullet sprite stuff
 	public Sprite[] normalBullets;
 	
+	private void Awake() {
+		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo -= 1;
+		Debug.Log(Ammo);
+	}
+
 
 	void Start() {
+		int arrayIdx = Random.Range(0, normalBullets.Length);
+		Sprite chooseBulletSprite = normalBullets[arrayIdx];
+		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
 
 		if(Player.transform.localScale.x > 0) {
 			Speed = -Speed;
 		}
 	}
 
-	private void Awake() {
-		int arrayIdx = Random.Range(0, normalBullets.Length);
-		Sprite chooseBulletSprite = normalBullets[arrayIdx];
-		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;		
-	}
 
 	void Update() {
 		GetComponent<Rigidbody2D>().velocity = new Vector2(Speed, GetComponent<Rigidbody2D>().velocity.y);

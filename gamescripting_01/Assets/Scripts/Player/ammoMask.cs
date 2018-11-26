@@ -5,16 +5,83 @@ using UnityEngine;
 public class ammoMask : MonoBehaviour {
 
 	//ammo life
-	public int ammoLife;
+	// ammoLife = GameObject.Find("levelManager").GetComponent<levelManager>().ammo;
+	// public int Ammo = Bullet1.Ammo;
+	// public int Ammo = levelManager.ammo;
+	// public levelManager Ammo;
+	public int Ammo;
 	public Sprite CurrentSprite;
-	public Sprite[] spriteMask;
-	private void Start() {
-		ammoLife = GameObject.Find("levelManager").GetComponent<levelManager>().ammo += 1;
-	}
-	private void Update() {
+	public Sprite[] spriteMask;	
+	public Sprite SpriteMaskNone;
+	public Sprite SpriteMask10;
+	public Sprite SpriteMask09;
+	public Sprite SpriteMask08;
+	public Sprite SpriteMask07;
+	public Sprite SpriteMask06;
+	public Sprite SpriteMask05;
+	public Sprite SpriteMask04;
+	public Sprite SpriteMask03;
+	public Sprite SpriteMask02;
+	public Sprite SpriteMask01;
 
+	// List<Sprite> SpriteList = new List<Sprite>();
+	void Awake() {
+		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
+	}
+
+	private void Update() {
+		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
+
+		Debug.Log(Ammo + "Mask");
+
+		switch (Ammo)
+		{
+			case 10:
+				GetComponent<SpriteMask>().sprite = SpriteMaskNone;
+			break;
+
+			case 9:
+				GetComponent<SpriteMask>().sprite = SpriteMask10;
+			break;
+
+			case 8:
+				GetComponent<SpriteMask>().sprite = SpriteMask09;
+			break;
+
+			case 7:
+				GetComponent<SpriteMask>().sprite = SpriteMask08;
+			break;
+
+			case 6:
+				GetComponent<SpriteMask>().sprite = SpriteMask07;
+			break;
+
+			case 5:
+				GetComponent<SpriteMask>().sprite = SpriteMask06;
+			break;
+
+			case 4:
+				GetComponent<SpriteMask>().sprite = SpriteMask05;
+			break;
+
+			case 3:
+				GetComponent<SpriteMask>().sprite = SpriteMask04;
+			break;
+
+			case 2:
+				GetComponent<SpriteMask>().sprite = SpriteMask03;
+			break;
+
+			case 1:
+				GetComponent<SpriteMask>().sprite = SpriteMask02;
+			break;
+
+			default:
+				GetComponent<SpriteMask>().sprite = SpriteMaskNone;
+			break;
+		}
 		//check which mask to use
-		CurrentSprite = spriteMask[ammoLife];
-		GetComponent<SpriteMask>().sprite = CurrentSprite;
+		// CurrentSprite = spriteMask[ammoLife];
+		// GetComponent<SpriteMask>().sprite = CurrentSprite;
 	}
 }

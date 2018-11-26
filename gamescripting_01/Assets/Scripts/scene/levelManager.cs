@@ -34,6 +34,12 @@ public class levelManager : MonoBehaviour {
 	public void RespawnPlayer(){
 		StartCoroutine ("RespawnPlayerCo");
 	}
+	public void Update() {
+		//Debug.Log(ammo);
+		if(ammo < 0) {
+			ammo = 0;
+		}
+	}
 
 	IEnumerator RespawnPlayerCo(){
 		yield return null;

@@ -545,7 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd3e831d071a7d43a352c0fa73b0a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoLife: 0
+  Ammo: 10
+  CurrentSprite: {fileID: 0}
   spriteMask:
   - {fileID: 21300032, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
   - {fileID: 21300034, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
@@ -557,6 +558,17 @@ MonoBehaviour:
   - {fileID: 21300046, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
   - {fileID: 21300048, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
   - {fileID: 21300050, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMaskNone: {fileID: 21300000, guid: 3bd186c388087924f8d0547d0cf661f9, type: 3}
+  SpriteMask10: {fileID: 21300032, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask09: {fileID: 21300034, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask08: {fileID: 21300036, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask07: {fileID: 21300038, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask06: {fileID: 21300040, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask05: {fileID: 21300042, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask04: {fileID: 21300044, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask03: {fileID: 21300046, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask02: {fileID: 21300048, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
+  SpriteMask01: {fileID: 21300050, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
 --- !u!1 &455218845
 GameObject:
   m_ObjectHideFlags: 0
