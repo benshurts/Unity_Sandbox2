@@ -10,8 +10,8 @@ public class ammoMask : MonoBehaviour {
 	// public int Ammo = levelManager.ammo;
 	// public levelManager Ammo;
 	public int Ammo;
+	const int MAXAMMO = 10;
 	public Sprite CurrentSprite;
-	public Sprite[] spriteMask;	
 	public Sprite SpriteMaskNone;
 	public Sprite SpriteMask10;
 	public Sprite SpriteMask09;
@@ -24,7 +24,8 @@ public class ammoMask : MonoBehaviour {
 	public Sprite SpriteMask02;
 	public Sprite SpriteMask01;
 
-	// List<Sprite> SpriteList = new List<Sprite>();
+	public List<Sprite> SpriteList = new List<Sprite>();
+	
 	void Awake() {
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 	}
@@ -33,53 +34,54 @@ public class ammoMask : MonoBehaviour {
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 
 		Debug.Log(Ammo + "Mask");
+		// string SpriteName = "SpriteMask" + Ammo;
+		// if(Ammo == MAXAMMO) GetComponent<SpriteMask>().sprite = SpriteMaskNone;
+		// else if(Ammo < MAXAMMO && Ammo > 0) GetComponent<SpriteMask>().sprite = SpriteName; 
+		
+		
+		// switch (Ammo)
+		// {
 
-		switch (Ammo)
-		{
-			case 10:
-				GetComponent<SpriteMask>().sprite = SpriteMaskNone;
-			break;
+		// 	case 9:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask10;
+		// 	break;
 
-			case 9:
-				GetComponent<SpriteMask>().sprite = SpriteMask10;
-			break;
+		// 	case 8:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask09;
+		// 	break;
 
-			case 8:
-				GetComponent<SpriteMask>().sprite = SpriteMask09;
-			break;
+		// 	case 7:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask08;
+		// 	break;
 
-			case 7:
-				GetComponent<SpriteMask>().sprite = SpriteMask08;
-			break;
+		// 	case 6:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask07;
+		// 	break;
 
-			case 6:
-				GetComponent<SpriteMask>().sprite = SpriteMask07;
-			break;
+		// 	case 5:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask06;
+		// 	break;
 
-			case 5:
-				GetComponent<SpriteMask>().sprite = SpriteMask06;
-			break;
+		// 	case 4:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask05;
+		// 	break;
 
-			case 4:
-				GetComponent<SpriteMask>().sprite = SpriteMask05;
-			break;
+		// 	case 3:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask04;
+		// 	break;
 
-			case 3:
-				GetComponent<SpriteMask>().sprite = SpriteMask04;
-			break;
+		// 	case 2:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask03;
+		// 	break;
 
-			case 2:
-				GetComponent<SpriteMask>().sprite = SpriteMask03;
-			break;
+		// 	case 1:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMask02;
+		// 	break;
 
-			case 1:
-				GetComponent<SpriteMask>().sprite = SpriteMask02;
-			break;
-
-			default:
-				GetComponent<SpriteMask>().sprite = SpriteMaskNone;
-			break;
-		}
+		// 	default:
+		// 		GetComponent<SpriteMask>().sprite = SpriteMaskNone;
+		// 	break;
+		// }
 		//check which mask to use
 		// CurrentSprite = spriteMask[ammoLife];
 		// GetComponent<SpriteMask>().sprite = CurrentSprite;

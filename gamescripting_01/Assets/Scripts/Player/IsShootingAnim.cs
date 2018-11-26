@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class IsShootingAnim : StateMachineBehaviour {
 
-	public bool IsShooting = false;
+	// public bool IsShooting = false;
+	// private Animator anim;
 
-	private void Update() {
-		if(Input.GetKeyUp(KeyCode.Mouse0)) {
-			IsShooting = true;
-		} else IsShooting = false;
-	}
+	// private void Update() {
+	// 	if(Input.GetKeyUp(KeyCode.Mouse0)) {
+	// 		anim.SetTrigger("IsShooting");
+	// 	}
+	// }
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
 	//override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 	//
