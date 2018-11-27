@@ -6,41 +6,33 @@ public class playerShoot : MonoBehaviour {
 	//shoot vars
 	public Transform FirePoint;
 	public GameObject Projectile;
-	public Sprite[] normalBullets;
-
+	public float OffSet;
 	private Animator Anim;
-	//private float variable = 2f;
 
-	//GameObject BulletPrefab = Resources.Load("Bullet1") as GameObject;
+	public float BulletSpeed = 10f;
+	float SpeedStartTime = 0f;
+	
+	public float FinalShootSpeed;
+
 	
 	void start() {
-		Projectile = GameObject.Find("Bullet1");
 		Anim = GetComponent<Animator>();
-		//GameObject BulletPrefab = Resources.Load("Bullet1") as GameObject;
 	}
 
-	// private void Awake() {
-	// 	int arrayIdx = Random.Range(0, normalBullets.Length);
-	// 	Sprite chooseBulletSprite = normalBullets[arrayIdx];
-	// 	GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
-	// }
 	void Update() {
-		if(Input.GetKeyUp(KeyCode.Mouse0))			
+		Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+		float RotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.Euler(0f,0f,RotZ + OffSet);
+		//holddown for more bullet force
+		if(Input.GetMouseButtonDown(0)) {
+			SpeedStartTime = Time.time;
+		}
+		if(Input.GetMouseButtonUp(0)) {
+			float delta = Time.time - SpeedStartTime;
+			float AdjustedSpeed = BulletSpeed * delta;
+			FinalShootSpeed = AdjustedSpeed;
 			Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 			Anim.SetTrigger("IsShooting");
+		}
 	}
-
-	//  void Shoot()
-	// {
-	// 	Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	// 	aimPos.z = 0;
-	
-	// 	//Creating the bullet and shooting it
-	// 	var pel = Instantiate(Bullet, Spawn.position, Spawn.rotation);
-	// 	pel.GetComponent<Rigidbody2D>().AddForce(aimPos.normalized * 8000f);
-	// 	//Playing the bullet noise
-	// 	Shot.Play();
-	// 	//shooting and reloading
-	// 	usingBulletPerMag -= 1;
-	// }
 }

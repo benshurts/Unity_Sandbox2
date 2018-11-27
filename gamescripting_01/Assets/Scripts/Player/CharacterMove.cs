@@ -15,6 +15,7 @@ public class CharacterMove : MonoBehaviour {
 	public float groundCheckRadius;
 	public LayerMask whatIsGround;
 	private bool grounded;
+	public BoxCollider2D PlayerCollider;
 
 
 	// Use this for initialization
@@ -32,54 +33,60 @@ public class CharacterMove : MonoBehaviour {
 		// This code makes the character jump
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 		AmmoNum = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
+
+		//jump higher the less ammo you have
+
+
+
 		if(Ammo > 0) {
-			// JumpHeight = Ammo - Ammo + (1*Ammo);
-			JumpHeight = Mathf.Lerp(1,Ammo,Ammo);
-			JumpHeight = -JumpHeight;
-			if(JumpHeight < 0) JumpHeight = -JumpHeight;
-			
-			// switch (Ammo) {
+			switch (Ammo) {
 				
-			// 	case 10:
-			// 		JumpHeight = 1f;
-			// 		break;
+				case 10:
+					JumpHeight = 5f;
+					break;
 				
-			// 	case 9:
-			// 		JumpHeight = 2f;
-			// 		break;
+				case 9:
+					JumpHeight = 5.5f;
+					break;
 				
-			// 	case 8:
-			// 		JumpHeight = 3f;
-			// 		break;
+				case 8:
+					JumpHeight = 6f;
+					break;
 				
-			// 	case 7:
-			// 		JumpHeight = 4f;
-			// 		break;
+				case 7:
+					JumpHeight = 6.5f;
+					break;
 				
-			// 	case 6:
-			// 		JumpHeight = 5f;
-			// 		break;
+				case 6:
+					JumpHeight = 7f;
+					break;
 				
-			// 	case 5:
-			// 		JumpHeight = 4f;
-			// 		break;
+				case 5:
+					JumpHeight = 7.5f;
+					PlayerCollider.size = new Vector2(1, 0.5f);
+					PlayerCollider.offset = new Vector2(0, -0.25f);
+					break;
 				
-			// 	case 4:
-			// 		JumpHeight = 5f;
-			// 		break;
+				case 4:
+					JumpHeight = 8f;
+					break;
 				
-			// 	case 3:
-			// 		JumpHeight = 6f;
-			// 		break;
+				case 3:
+					JumpHeight = 8.5f;
+					break;
 				
-			// 	case 2:
-			// 		JumpHeight = 7f;
-			// 		break;
+				case 2:
+					JumpHeight = 9f;
+					break;
 				
-			// 	case 1:
-			// 		JumpHeight = 8f;
-			// 		break;
-			// }
+				case 1:
+					JumpHeight = 10f;
+					break;
+				
+				default:
+					JumpHeight = 10f;
+					break;
+			}
 		}
 		Debug.Log("JumpHeight " + JumpHeight);
 		

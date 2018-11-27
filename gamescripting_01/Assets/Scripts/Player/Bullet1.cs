@@ -19,27 +19,44 @@ public class Bullet1 : MonoBehaviour {
 
 	//bullet sprite stuff
 	public Sprite[] normalBullets;
+
+	private Vector2 MousePosition;
 	
+	public float OffSet;
+
+	float ShootSpeed;
 	private void Awake() {
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo -= 1;
-		Debug.Log(Ammo);
+		ShootSpeed = GameObject.Find("Shooter").GetComponent<playerShoot>().FinalShootSpeed;
 	}
 
 
 	void Start() {
+		
+
 		int arrayIdx = Random.Range(0, normalBullets.Length);
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
 		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
+		
+		//get mouse position
+		// Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+		// float RotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+		// transform.rotation = Quaternion.Euler(0f,0f,RotZ + OffSet);
 
-		if(Player.transform.localScale.x > 0) {
-			Speed = -Speed;
-		}
+
+		// if(Player.transform.localScale.x > 0) {
+		// 	Speed = -Speed;
+		// }
 	}
 
 
 	void Update() {
-		GetComponent<Rigidbody2D>().velocity = new Vector2(Speed, GetComponent<Rigidbody2D>().velocity.y);
+		Debug.DrawRay(transform.position,Vector2.up,Color.red, 0.5f);
+
+		transform.Translate(transform.up * ShootSpeed * Time.deltaTime);
+		// GetComponent<Rigidbody2D>().velocity = new Vector2(Speed, GetComponent<Rigidbody2D>().velocity.y);
 	}
+
 
 	void OnTrigger2D(Collider2D other) {
 		if (other.tag == "enemy") {
