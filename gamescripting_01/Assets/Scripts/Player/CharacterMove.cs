@@ -5,7 +5,10 @@ public class CharacterMove : MonoBehaviour {
 
 	// Player Movement Variables
 	public int MoveSpeed;
-	public float JumpHeight;
+	private float JumpHeight;
+
+	int Ammo;
+	int AmmoNum;
 
 	//Player grounded variables
 	public Transform groundCheck;
@@ -26,10 +29,62 @@ public class CharacterMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {		
-		Debug.DrawRay(groundCheck.position,Vector3.left, Color.green ,0.5f);
 		// This code makes the character jump
+		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
+		AmmoNum = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
+		if(Ammo > 0) {
+			// JumpHeight = Ammo - Ammo + (1*Ammo);
+			JumpHeight = Mathf.Lerp(1,Ammo,Ammo);
+			JumpHeight = -JumpHeight;
+			if(JumpHeight < 0) JumpHeight = -JumpHeight;
+			
+			// switch (Ammo) {
+				
+			// 	case 10:
+			// 		JumpHeight = 1f;
+			// 		break;
+				
+			// 	case 9:
+			// 		JumpHeight = 2f;
+			// 		break;
+				
+			// 	case 8:
+			// 		JumpHeight = 3f;
+			// 		break;
+				
+			// 	case 7:
+			// 		JumpHeight = 4f;
+			// 		break;
+				
+			// 	case 6:
+			// 		JumpHeight = 5f;
+			// 		break;
+				
+			// 	case 5:
+			// 		JumpHeight = 4f;
+			// 		break;
+				
+			// 	case 4:
+			// 		JumpHeight = 5f;
+			// 		break;
+				
+			// 	case 3:
+			// 		JumpHeight = 6f;
+			// 		break;
+				
+			// 	case 2:
+			// 		JumpHeight = 7f;
+			// 		break;
+				
+			// 	case 1:
+			// 		JumpHeight = 8f;
+			// 		break;
+			// }
+		}
+		Debug.Log("JumpHeight " + JumpHeight);
+		
 		if(Input.GetKeyDown (KeyCode.Space)&& grounded){
-			Jump();
+			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
 		}
 
 		// This code makes the character move from side to side using the A&D keys
@@ -42,10 +97,5 @@ public class CharacterMove : MonoBehaviour {
 			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 			
 		}
-
-	}
-
-	public void Jump(){
-		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
 	}
 }

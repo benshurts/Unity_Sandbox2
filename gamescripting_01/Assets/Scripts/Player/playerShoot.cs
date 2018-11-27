@@ -8,12 +8,14 @@ public class playerShoot : MonoBehaviour {
 	public GameObject Projectile;
 	public Sprite[] normalBullets;
 
+	private Animator Anim;
 	//private float variable = 2f;
 
 	//GameObject BulletPrefab = Resources.Load("Bullet1") as GameObject;
 	
 	void start() {
 		Projectile = GameObject.Find("Bullet1");
+		Anim = GetComponent<Animator>();
 		//GameObject BulletPrefab = Resources.Load("Bullet1") as GameObject;
 	}
 
@@ -23,9 +25,9 @@ public class playerShoot : MonoBehaviour {
 	// 	GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
 	// }
 	void Update() {
-		if(Input.GetKeyUp(KeyCode.Mouse0))
-			
+		if(Input.GetKeyUp(KeyCode.Mouse0))			
 			Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
+			Anim.SetTrigger("IsShooting");
 	}
 
 	//  void Shoot()
