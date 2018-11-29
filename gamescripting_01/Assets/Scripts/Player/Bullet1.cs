@@ -33,7 +33,7 @@ public class Bullet1 : MonoBehaviour {
 
 	void Start() {
 		
-
+		//get random sprite for bullet
 		int arrayIdx = Random.Range(0, normalBullets.Length);
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
 		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
@@ -51,9 +51,11 @@ public class Bullet1 : MonoBehaviour {
 
 
 	void Update() {
-		Debug.DrawRay(transform.position,Vector2.up,Color.red, 0.5f);
-
-		transform.Translate(transform.up * ShootSpeed * Time.deltaTime);
+		// Debug.DrawRay(transform.position,Vector2.up,Color.red, 0.5f);
+		
+		//transform.Translate(transform.up * ShootSpeed * Time.deltaTime);
+		GetComponent<Rigidbody2D>().AddForce(transform.up * ShootSpeed * Time.deltaTime);
+		
 		// GetComponent<Rigidbody2D>().velocity = new Vector2(Speed, GetComponent<Rigidbody2D>().velocity.y);
 	}
 
@@ -65,15 +67,20 @@ public class Bullet1 : MonoBehaviour {
 			ScoreManager.AddPoints(PointsForKill);
 			
 		}
+		if (other.tag == "player") {
+			print("touching Bullet");
+			Ammo += 1;
+			Destroy(gameObject);
+		}
 
-		Instantiate(ProjectileParticle, transform.position, transform.rotation);
-		Destroy(gameObject);
+		// Instantiate(ProjectileParticle, transform.position, transform.rotation);
+		// Destroy(gameObject);
 		
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		Instantiate(ProjectileParticle, transform.position, transform.rotation);
-		Destroy (gameObject);
+		// Instantiate(ProjectileParticle, transform.position, transform.rotation);
+		// Destroy (gameObject);
 	}
 
 

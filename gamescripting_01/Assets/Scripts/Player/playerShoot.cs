@@ -31,8 +31,10 @@ public class playerShoot : MonoBehaviour {
 			float delta = Time.time - SpeedStartTime;
 			float AdjustedSpeed = BulletSpeed * delta;
 			FinalShootSpeed = AdjustedSpeed;
+			if(FinalShootSpeed > 8) FinalShootSpeed = 8;
 			Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 			Anim.SetTrigger("IsShooting");
 		}
+		print(FinalShootSpeed);
 	}
 }
