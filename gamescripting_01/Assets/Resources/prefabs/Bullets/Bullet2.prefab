@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4985354615240634}
   - component: {fileID: 212687295211575086}
   - component: {fileID: 50562030603411262}
-  - component: {fileID: 114327377168468980}
   - component: {fileID: 61566731441010954}
+  - component: {fileID: 114337645870653986}
   m_Layer: 0
-  m_Name: Bullet1
+  m_Name: Bullet2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Rigidbody2D:
   m_AngularDrag: 0.001
   m_GravityScale: 0.5
   m_Material: {fileID: 6200000, guid: 86212c4e085d3574988fcca213059505, type: 2}
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25944948, y: 0.2597723}
   m_EdgeRadius: 0
---- !u!114 &114327377168468980
+--- !u!114 &114337645870653986
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,26 +96,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971496403517224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a34a2ab1f03d24f8497831e170af22, type: 3}
+  m_Script: {fileID: 11500000, guid: f4ddef0fb1f0ac1469bc62d0dd7fe8b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ammo: 10
-  Speed: 4
-  Impulse: {x: 0, y: 0}
-  Player: {fileID: 0}
-  EnemyDeath: {fileID: 0}
-  ProjectileParticle: {fileID: 0}
-  PointsForKill: 1
-  normalBullets:
-  - {fileID: 21300006, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  - {fileID: 21300008, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  - {fileID: 21300010, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  - {fileID: 21300012, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  - {fileID: 21300014, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  - {fileID: 21300016, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  - {fileID: 21300018, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  - {fileID: 21300020, guid: 658adc0ade9065f4697e588d388c59a7, type: 3}
-  OffSet: 0
 --- !u!212 &212687295211575086
 SpriteRenderer:
   m_ObjectHideFlags: 1

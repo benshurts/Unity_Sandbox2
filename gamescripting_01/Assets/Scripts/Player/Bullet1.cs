@@ -6,6 +6,11 @@ public class Bullet1 : MonoBehaviour {
 
 	public int Ammo;
 	public float Speed;
+
+	//init force
+	public Vector2 Impulse;
+	bool m_oneTime = false;
+	//-----------------
 	public Rigidbody2D Player;
 
 	//if bullet hits enemy
@@ -25,40 +30,37 @@ public class Bullet1 : MonoBehaviour {
 	public float OffSet;
 
 	float ShootSpeed;
+	Vector2 ShootDirection;
 	private void Awake() {
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo -= 1;
 		ShootSpeed = GameObject.Find("Shooter").GetComponent<playerShoot>().FinalShootSpeed;
+		ShootDirection = GameObject.Find("Shooter").GetComponent<playerShoot>().ShootDir;
+
+		//get dir vector2
+		Impulse = new Vector2(1,1);
 	}
 
 
 	void Start() {
+		
 		
 		//get random sprite for bullet
 		int arrayIdx = Random.Range(0, normalBullets.Length);
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
 		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
 		
-		//get mouse position
-		// Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-		// float RotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-		// transform.rotation = Quaternion.Euler(0f,0f,RotZ + OffSet);
-
-
-		// if(Player.transform.localScale.x > 0) {
-		// 	Speed = -Speed;
-		// }
 	}
 
 
-	void Update() {
-		// Debug.DrawRay(transform.position,Vector2.up,Color.red, 0.5f);
-		
-		//transform.Translate(transform.up * ShootSpeed * Time.deltaTime);
-		GetComponent<Rigidbody2D>().AddForce(transform.up * ShootSpeed * Time.deltaTime);
-		
-		// GetComponent<Rigidbody2D>().velocity = new Vector2(Speed, GetComponent<Rigidbody2D>().velocity.y);
-	}
+	void FixedUpdate() {
 
+		if (!m_oneTime)
+        {
+			GetComponent<Rigidbody>().AddForce(Impulse, ForceMode.Impulse);//use forcemode.impulse for different masses .velocitychange to ignore different masses
+			m_oneTime = false;
+        }
+
+	}
 
 	void OnTrigger2D(Collider2D other) {
 		if (other.tag == "enemy") {
