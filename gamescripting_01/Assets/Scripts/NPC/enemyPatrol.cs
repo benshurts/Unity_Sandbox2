@@ -1,40 +1,40 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class enemyPatrol : MonoBehaviour {
+public class EnemyPatrol : MonoBehaviour {
+	public Transform OriginPoint;
+	public Transform DownCheck;
+	private Vector2 dir = new Vector2(1,0);
+	public float range;
+	public float speed;
+	Rigidbody2D rb;
+	Collider2D col;
+	private void Start() {
+		rb = GetComponent<Rigidbody2D>();
+	}
+	private void Update() {
+		Debug.DrawRay(OriginPoint.position,dir,Color.red,range);
+		Debug.DrawRay(DownCheck.position,Vector2.down,Color.red,range);
 
-	// Movement Variables
-	public float MoveSpeed;
-	public bool MoveRight;
+		RaycastHit2D downHit = Physics2D.Raycast(DownCheck.position,Vector2.down,range);
+		RaycastHit2D hit = Physics2D.Raycast(OriginPoint.position,dir,range);
+		// print("Rayhit " + hit);
+		if(hit == true || downHit == false){
 
-	// Wall Check
-	public Transform WallCheck;
-	public float WallCheckRadius;
-	public LayerMask WhatIsWall;
-	private bool HittingWall;
-	
-	// Edge Check
-	private bool NotAtEdge;
-	public Transform EdgeCheck;
-	
-	
-	// Update is called once per frame
-	void Update () {
-		NotAtEdge = Physics2D.OverlapCircle(EdgeCheck.position, WallCheckRadius, WhatIsWall);
+				FLip();
+				speed *= -1;
+				dir *= -1;
 
-		HittingWall = Physics2D.OverlapCircle(WallCheck.position, WallCheckRadius, WhatIsWall);
-
-		if (HittingWall || !NotAtEdge){
-			MoveRight = !MoveRight;
-		}
-
-		if (MoveRight){
-			transform.localScale = new Vector3(-5f,5f,1f);
-			GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-		}
-		else {
-			transform.localScale = new Vector3(5f,5f,1f);
-			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		}
 	}
+	void FLip(){
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+	private void FixedUpdate() {
+		rb.velocity = new Vector2(speed,rb.velocity.y);
+	}
+
 }

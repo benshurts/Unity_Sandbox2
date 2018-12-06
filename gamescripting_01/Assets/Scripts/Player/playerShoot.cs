@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerShoot : MonoBehaviour {
-	//shoot vars
+	//powerbar
+	private Slider PowerBar;
+	private float PowerBarThreshhold = 10f;
+	private float PowerBarValue = 0f;
 
+
+	//shoot vars
 	public Transform Start;
 	public Transform Target;
 	public float h = 25; //height
@@ -28,6 +34,12 @@ public class playerShoot : MonoBehaviour {
 	}
 	void Awake() {
 		Anim = GameObject.Find("Shoot").GetComponent<Animator>();
+		//powerbar stuff
+		PowerBar = GameObject.Find("Power_Bar").GetComponent<Slider>();
+		PowerBar.minValue = 0f;
+		PowerBar.maxValue = 10f;
+		PowerBar.value = PowerBarValue;
+
 	}
 	void Update() {
 
@@ -41,24 +53,42 @@ public class playerShoot : MonoBehaviour {
 		// ShootDirection();
 		//holddown for more bullet force
 		if(Input.GetMouseButtonDown(0)) {
-			SpeedStartTime = Time.time;
+			SpeedStartTime = Time.time;//time
 			// Anim.SetTrigger("IsShooting");
-
+			//powerbar
 		}
 		if(Input.GetMouseButtonUp(0)) {
-			float delta = Time.time - SpeedStartTime;
+			float delta = Time.time - SpeedStartTime;//time
 			float AdjustedSpeed = BulletSpeed * delta;
-			FinalShootSpeed = AdjustedSpeed;
-			// print("Final Shoot Speed "+FinalShootSpeed);
+			if(AdjustedSpeed > 10f)	{AdjustedSpeed = 10f;}
+			//powerbar
+			// PowerBarValue = 0f;
+			// PowerBar.value = PowerBarValue;
+			//shootspeed
+			FinalShootSpeed = AdjustedSpeed - 2;
+			print("Final Shoot Speed "+FinalShootSpeed);
 			if(FinalShootSpeed > 100) FinalShootSpeed = 100;
 			GameObject Bullet = Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 			ShootVel = CalcLaunchVel();
 			Anim.SetTrigger("IsShooting");
-			Anim.SetTrigger("IsShooting");
-
+		}
+		//powerbar
+		if(Input.GetMouseButton(0)) {
+			SetPowerBar();
+			print("Power " + PowerBarValue);
 		}
 
+
+
+
 	}
+	void SetPowerBar(){
+		PowerBarValue = PowerBarThreshhold * Time.deltaTime;
+		PowerBar.value = PowerBarValue;
+
+	}
+
+
 	public Vector2 CalcLaunchVel(){
 		float DispY = Target.position.y - Start.position.y;
 		Vector2 DispX = new Vector2 (Target.position.x - Start.position.x, 0);
