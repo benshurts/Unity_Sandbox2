@@ -17,42 +17,47 @@ public class playerShoot : MonoBehaviour {
 	public Vector2 ShootDir;
 	public Vector2 ShootVel;
 //----------------
-	public float BulletSpeed = 10f;
+	public float BulletSpeed = 3f;
 	float SpeedStartTime = 0f;
 
 	public float FinalShootSpeed;
 
 
 	void start() {
-		Anim = GetComponent<Animator>();
+		// Anim = GetComponent<Animator>();
 	}
-
+	void Awake() {
+		Anim = GameObject.Find("Shoot").GetComponent<Animator>();
+	}
 	void Update() {
 
 		Vector2 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 		float RotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.Euler(0f,0f,RotZ + OffSet);
 		ShootDir = difference;
-		print(ShootDir);
+		// print(ShootDir);
 
 
 		// ShootDirection();
 		//holddown for more bullet force
 		if(Input.GetMouseButtonDown(0)) {
 			SpeedStartTime = Time.time;
+			// Anim.SetTrigger("IsShooting");
+
 		}
 		if(Input.GetMouseButtonUp(0)) {
-			// ShootDir = ShootDirection();
 			float delta = Time.time - SpeedStartTime;
 			float AdjustedSpeed = BulletSpeed * delta;
 			FinalShootSpeed = AdjustedSpeed;
+			// print("Final Shoot Speed "+FinalShootSpeed);
 			if(FinalShootSpeed > 100) FinalShootSpeed = 100;
 			GameObject Bullet = Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
-			// Bullet.GetComponent<Rigidbody2D>().AddForce(CalcLaunchVel());
 			ShootVel = CalcLaunchVel();
 			Anim.SetTrigger("IsShooting");
+			Anim.SetTrigger("IsShooting");
+
 		}
-		// print(FinalShootSpeed);
+
 	}
 	public Vector2 CalcLaunchVel(){
 		float DispY = Target.position.y - Start.position.y;
@@ -61,7 +66,6 @@ public class playerShoot : MonoBehaviour {
 		Vector2 VelY = Vector2.up * Mathf.Sqrt(-2 * g * h);
 		Vector2 VelX = DispX / (Mathf.Sqrt(-2 * h / g) + Mathf.Sqrt(2 * DispY - h) / g);
 
-		print(DispX);
 		return VelX + VelY;
 	}
 

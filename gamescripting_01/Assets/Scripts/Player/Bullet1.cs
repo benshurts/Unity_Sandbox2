@@ -53,7 +53,7 @@ public class Bullet1 : MonoBehaviour {
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
 		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
 		GetComponent<Rigidbody2D>().AddForce(ShootDirection * ShootSpeed, ForceMode2D.Impulse);
-
+		// print(ShootDirection*ShootSpeed);
 	}
 
 
