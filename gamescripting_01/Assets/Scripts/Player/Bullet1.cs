@@ -26,48 +26,43 @@ public class Bullet1 : MonoBehaviour {
 	public Sprite[] normalBullets;
 
 	private Vector2 MousePosition;
-	
+
 	public float OffSet;
 
 	float ShootSpeed;
 	Vector2 ShootDirection;
+	Vector2 ShootVector;
+	Vector2 ShootVelocity;
+	playerShoot playerShoot;
 	private void Awake() {
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo -= 1;
 		ShootSpeed = GameObject.Find("Shooter").GetComponent<playerShoot>().FinalShootSpeed;
 		ShootDirection = GameObject.Find("Shooter").GetComponent<playerShoot>().ShootDir;
-
+		ShootVelocity = GameObject.Find("Shooter").GetComponent<playerShoot>().ShootVel;
+		playerShoot = GameObject.Find("Shooter").GetComponent<playerShoot>();
 		//get dir vector2
 		Impulse = new Vector2(1,1);
 	}
 
 
 	void Start() {
-		
-		
+
+		ShootVector = playerShoot.CalcLaunchVel();
 		//get random sprite for bullet
 		int arrayIdx = Random.Range(0, normalBullets.Length);
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
 		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
-		
-	}
-
-
-	void FixedUpdate() {
-
-		if (!m_oneTime)
-        {
-			GetComponent<Rigidbody>().AddForce(Impulse, ForceMode.Impulse);//use forcemode.impulse for different masses .velocitychange to ignore different masses
-			m_oneTime = false;
-        }
+		GetComponent<Rigidbody2D>().AddForce(ShootDirection * ShootSpeed, ForceMode2D.Impulse);
 
 	}
+
 
 	void OnTrigger2D(Collider2D other) {
 		if (other.tag == "enemy") {
 			Instantiate(EnemyDeath, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
 			ScoreManager.AddPoints(PointsForKill);
-			
+
 		}
 		if (other.tag == "player") {
 			print("touching Bullet");
@@ -77,7 +72,7 @@ public class Bullet1 : MonoBehaviour {
 
 		// Instantiate(ProjectileParticle, transform.position, transform.rotation);
 		// Destroy(gameObject);
-		
+
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
