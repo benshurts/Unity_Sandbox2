@@ -5,19 +5,23 @@ using UnityEngine;
 public class EnemyDeath : MonoBehaviour {
 
 	public float health = 10f;
+	public float Damage;
 	GameObject Bullet;
 	Bullet1 BulletScript;
 	private void Update() {
-		if(health == 0f) {
+
+		//death on health 0
+		if(health <= 0f) {
 			Destroy(gameObject);
 		}
+		print("health " + health);
 	}
-
-	void OnCollisionEnter(Collision2D col) {
-		Vector3 collisionForce = col.impulse / Time.fixedDeltaTime;
+	void OnCollisionEnter2D( Collision2D col) {
 		if(col.gameObject.tag.Equals("Bullet")) {
-			// BulletScript.ShootSpeed
-			Destroy(col.gameObject);
+			Damage = col.relativeVelocity.magnitude;
+			health -= Damage/2;
+			Debug.Log( "Collision 2D Detected. Magnitude: " + col.relativeVelocity.magnitude);
+
 		}
 
 	}

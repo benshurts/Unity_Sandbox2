@@ -66,7 +66,7 @@ public class playerShoot : MonoBehaviour {
 			// PowerBar.value = PowerBarValue;
 			//shootspeed
 			FinalShootSpeed = AdjustedSpeed - 2;
-			print("Final Shoot Speed "+FinalShootSpeed);
+			// print("Final Shoot Speed "+FinalShootSpeed);
 			if(FinalShootSpeed > 100) FinalShootSpeed = 100;
 			GameObject Bullet = Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 			ShootVel = CalcLaunchVel();
