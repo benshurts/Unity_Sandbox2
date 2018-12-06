@@ -29,7 +29,7 @@ public class Bullet1 : MonoBehaviour {
 
 	public float OffSet;
 
-	float ShootSpeed;
+	public float ShootSpeed;//pass this to change damage of rock.
 	Vector2 ShootDirection;
 	Vector2 ShootVector;
 	Vector2 ShootVelocity;
@@ -77,8 +77,8 @@ public class Bullet1 : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		// Instantiate(ProjectileParticle, transform.position, transform.rotation);
-		// Destroy (gameObject);
 	}
+
 
 
 }

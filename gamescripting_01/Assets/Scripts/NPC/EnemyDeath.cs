@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class EnemyDeath : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
-	private void OnCollisionEnter2D(Collision2D other) {
-		if(other.gameObject.tag.Equals("Bullet")) {
-			Destroy(other.gameObject);
+	public float health = 10f;
+	GameObject Bullet;
+	Bullet1 BulletScript;
+	private void Update() {
+		if(health == 0f) {
 			Destroy(gameObject);
 		}
 	}
+
+	void OnCollisionEnter(Collision2D col) {
+		Vector3 collisionForce = col.impulse / Time.fixedDeltaTime;
+		if(col.gameObject.tag.Equals("Bullet")) {
+			// BulletScript.ShootSpeed
+			Destroy(col.gameObject);
+		}
+
+	}
+
+
 }
