@@ -10,6 +10,7 @@ public class EnemyPatrol : MonoBehaviour {
 	public float speed;
 	Rigidbody2D rb;
 	Collider2D col;
+	public LayerMask GroundLayerMask;
 	private void Start() {
 		rb = GetComponent<Rigidbody2D>();
 	}
@@ -17,9 +18,10 @@ public class EnemyPatrol : MonoBehaviour {
 		Debug.DrawRay(OriginPoint.position,dir,Color.red,range);
 		Debug.DrawRay(DownCheck.position,Vector2.down,Color.red,range);
 
-		RaycastHit2D downHit = Physics2D.Raycast(DownCheck.position,Vector2.down,range);
-		RaycastHit2D hit = Physics2D.Raycast(OriginPoint.position,dir,range);
+		RaycastHit2D downHit = Physics2D.Raycast(DownCheck.position,Vector2.down,range,GroundLayerMask.value);
+		RaycastHit2D hit = Physics2D.Raycast(OriginPoint.position,dir,range,GroundLayerMask.value);
 		// print("Rayhit " + hit);
+
 		if(hit == true || downHit == false){
 
 				FLip();
