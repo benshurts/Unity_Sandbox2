@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f4ac36d3aabbf43948b06c27c0e762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start: {fileID: 0}
+  Start: {fileID: 4644586252095056}
   Target: {fileID: 4272784832672934, guid: 67e245f91d11fd547bb49d032ad7d6fc, type: 2}
   h: 25
   g: -18
@@ -118,6 +118,7 @@ MonoBehaviour:
   Projectile: {fileID: 1971496403517224, guid: d8c5177b442672446bef19fc567bfdb7, type: 2}
   OffSet: -90
   ShootDir: {x: 0, y: 0}
+  ShootVel: {x: 0, y: 0}
   BulletSpeed: 10
   FinalShootSpeed: 0
 --- !u!212 &212130512277123366

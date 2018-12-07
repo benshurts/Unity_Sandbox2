@@ -21,12 +21,14 @@ public class EnemyDeath : MonoBehaviour {
 	void OnCollisionEnter2D( Collision2D col) {
 		if(col.gameObject.tag.Equals("Bullet")) {
 			Damage = col.relativeVelocity.magnitude;
+			if(Damage > 10) Damage = 10;
+			// print("Damage " + Damage);
 			if(Damage > 5f){
-				TakeDamage(Damage/2);
+				TakeDamage(Damage/4);
 				print("health " + Health);
 
 			}
-			print( "Collision 2D Detected. Magnitude: " + col.relativeVelocity.magnitude);
+			// print( "Collision 2D Detected. Magnitude: " + col.relativeVelocity.magnitude);
 
 		}
 
