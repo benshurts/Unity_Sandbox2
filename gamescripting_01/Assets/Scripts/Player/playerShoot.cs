@@ -75,7 +75,7 @@ public class playerShoot : MonoBehaviour {
 		//powerbar
 		if(Input.GetMouseButton(0)) {
 			SetPowerBar();
-			print("Power " + PowerBarValue);
+			// print("Power " + PowerBarValue);
 		}
 
 

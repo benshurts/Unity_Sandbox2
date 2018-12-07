@@ -28,16 +28,12 @@ public class CharacterMove : MonoBehaviour {
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 	}
 
-	// Update is called once per frame
 	void Update () {
 		// This code makes the character jump
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 		AmmoNum = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 
 		//jump higher the less ammo you have
-
-
-
 		if(Ammo > 0) {
 			switch (Ammo) {
 
@@ -88,7 +84,7 @@ public class CharacterMove : MonoBehaviour {
 					break;
 			}
 		}
-	// Debug.Log("JumpHeight " + JumpHeight);
+		// Debug.Log("JumpHeight " + JumpHeight);
 
 		if(Input.GetKeyDown (KeyCode.Space)&& grounded){
 			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);

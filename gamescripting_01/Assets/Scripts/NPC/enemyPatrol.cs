@@ -15,8 +15,8 @@ public class EnemyPatrol : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 	}
 	private void Update() {
-		Debug.DrawRay(OriginPoint.position,dir,Color.red,range);
-		Debug.DrawRay(DownCheck.position,Vector2.down,Color.red,range);
+		// Debug.DrawRay(OriginPoint.position,dir,Color.red,range);
+		// Debug.DrawRay(DownCheck.position,Vector2.down,Color.red,range);
 
 		RaycastHit2D downHit = Physics2D.Raycast(DownCheck.position,Vector2.down,range,GroundLayerMask.value);
 		RaycastHit2D hit = Physics2D.Raycast(OriginPoint.position,dir,range,GroundLayerMask.value);
