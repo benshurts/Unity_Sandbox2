@@ -5,14 +5,10 @@ using UnityEngine;
 public class Bullet1 : MonoBehaviour {
 
 	public int Ammo;
-	public float Speed;
 
 	//init force
 	public Vector2 Impulse;
-	bool m_oneTime = false;
 	//-----------------
-	public Rigidbody2D Player;
-
 	//if bullet hits enemy
 	public GameObject EnemyDeath;
 
@@ -24,10 +20,6 @@ public class Bullet1 : MonoBehaviour {
 
 	//bullet sprite stuff
 	public Sprite[] normalBullets;
-
-	private Vector2 MousePosition;
-
-	public float OffSet;
 
 	public float ShootSpeed;//pass this to change damage of rock.
 	Vector2 ShootDirection;
@@ -76,7 +68,7 @@ public class Bullet1 : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		// Instantiate(ProjectileParticle, transform.position, transform.rotation);
+		Instantiate(ProjectileParticle, transform.position, transform.rotation);
 	}
 
 

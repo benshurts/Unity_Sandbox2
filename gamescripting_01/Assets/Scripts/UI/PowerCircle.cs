@@ -39,7 +39,7 @@ public class PowerCircle : MonoBehaviour {
 		FillSpeed = Mathf.Lerp(0.0f,0.9f,0.5f);
 
 		if(fillAmt < 0) fillAmt = 0;
-		print(coolDownTimer);
+		// print(coolDownTimer);
 		//fade in but no bar before shoot timer
 		if(coolDownTimer > 0 && Input.GetMouseButton(0)){
 			PowerGroupHide.alpha += 0.5f;

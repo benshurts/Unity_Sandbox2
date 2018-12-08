@@ -31,9 +31,10 @@ public class playerShoot : MonoBehaviour {
 
 	public float FinalShootSpeed;
 
-
+	public CameraShaker CameraShaker;
 	void start() {
 		// Anim = GetComponent<Animator>();
+		CameraShaker = GameObject.Find("Camera").GetComponent<CameraShaker>();
 	}
 	void Awake() {
 		Anim = GameObject.Find("Shoot").GetComponent<Animator>();
@@ -69,7 +70,8 @@ public class playerShoot : MonoBehaviour {
 			ShootVel = CalcLaunchVel();
 			Anim.SetTrigger("IsShooting");
 			CoolDownTimer = CoolDown;
-			ParticleSystem RockParticles = Instantiate(SpawnParticle,FirePoint.position,FirePoint.rotation);
+			// ParticleSystem RockParticles = Instantiate(SpawnParticle,FirePoint.position,FirePoint.rotation);
+			StartCoroutine(CameraShaker.Shake(0.5f, 0.4f));
 
 		}
 
