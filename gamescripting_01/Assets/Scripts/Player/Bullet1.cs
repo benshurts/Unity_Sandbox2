@@ -26,6 +26,7 @@ public class Bullet1 : MonoBehaviour {
 	Vector2 ShootVector;
 	Vector2 ShootVelocity;
 	playerShoot playerShoot;
+	private CameraShake CameraShake;
 
 
 
@@ -35,6 +36,8 @@ public class Bullet1 : MonoBehaviour {
 		ShootDirection = GameObject.Find("Shooter").GetComponent<playerShoot>().ShootDir;
 		ShootVelocity = GameObject.Find("Shooter").GetComponent<playerShoot>().ShootVel;
 		playerShoot = GameObject.Find("Shooter").GetComponent<playerShoot>();
+		CameraShake = GameObject.FindGameObjectWithTag("Shake").GetComponent<CameraShake>();
+
 		//get dir vector2
 		Impulse = new Vector2(1,1);
 	}
@@ -71,8 +74,12 @@ public class Bullet1 : MonoBehaviour {
 
 	}
 	void OnCollisionEnter2D(Collision2D other)	{
+		Instantiate(ProjectileParticle, transform.position, transform.rotation);
+		if(other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("ground")){
+			CameraShake.CamShake();
 
-	Instantiate(ProjectileParticle, transform.position, transform.rotation);
+		}
+
 	}
 
 

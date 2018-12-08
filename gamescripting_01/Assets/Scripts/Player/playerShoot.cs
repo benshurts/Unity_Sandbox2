@@ -33,7 +33,6 @@ public class playerShoot : MonoBehaviour {
 	private CameraShake CameraShake;
 
 	void start() {
-		CameraShake = GameObject.FindGameObjectWithTag("Shake").GetComponent<CameraShake>();
 		// Anim = GetComponent<Animator>();
 		// CameraShaker = GameObject.Find("Camera").GetComponent<CameraShaker>();
 		// StartCoroutine(CameraShaker.Shake(0.5f, 0.4f));
@@ -41,6 +40,8 @@ public class playerShoot : MonoBehaviour {
 	}
 	void Awake() {
 		Anim = GameObject.Find("Shoot").GetComponent<Animator>();
+		CameraShake = GameObject.FindGameObjectWithTag("Shake").GetComponent<CameraShake>();
+
 		// CameraShaker = GameObject.Find("MainCamera").GetComponent<CameraShaker>();
 
 	}
@@ -82,6 +83,8 @@ public class playerShoot : MonoBehaviour {
 			// if(FinalShootSpeed > 10) FinalShootSpeed = 10;
 			GameObject Bullet = Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 			ShootVel = CalcLaunchVel();
+			//shake
+			CameraShake.CamShake();
 			Anim.SetTrigger("IsShooting");
 			CoolDownTimer = CoolDown;
 
