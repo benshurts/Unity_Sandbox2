@@ -14,37 +14,26 @@ public class EnemyDeath : MonoBehaviour {
 	private void Start() {
 		Health = StartHealth;
 	}
-	private void Update() {
-
-		//death on health 0
-	}
-	void OnCollisionEnter2D( Collision2D col) {
+	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag.Equals("Bullet")) {
 			Damage = col.relativeVelocity.magnitude;
 			if(Damage > 10) Damage = 10;
 			// print("Damage " + Damage);
 			if(Damage > 5f){
 				TakeDamage(Damage/4);
-				print("health " + Health);
-
+				// print("health " + Health);
 			}
 			// print( "Collision 2D Detected. Magnitude: " + col.relativeVelocity.magnitude);
-
 		}
-
 	}
 	public void TakeDamage(float ammount){
 		Health -= ammount;
 		HealthBar.fillAmount = Health / StartHealth;
-
 		if(Health <= 0f) {
 			Die();
 		}
-
 	}
 	public void Die(){
 		Destroy(gameObject);
 	}
-
-
 }

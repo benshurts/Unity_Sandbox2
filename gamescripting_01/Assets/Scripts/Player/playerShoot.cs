@@ -15,8 +15,6 @@ public class playerShoot : MonoBehaviour {
 	public float CoolDown = 5f;
 	public float CoolDownTimer;
 
-	ParticleSystem RockParticles;
-	public ParticleSystem SpawnParticle;
 
 //-------------
 	public Transform FirePoint;
@@ -26,7 +24,7 @@ public class playerShoot : MonoBehaviour {
 	public Vector2 ShootDir;
 	public Vector2 ShootVel;
 //----------------
-	public float BulletSpeed = 3f;
+	public float BulletSpeed = 0f;
 	float SpeedStartTime = 0f;
 
 	public float FinalShootSpeed;
@@ -34,7 +32,7 @@ public class playerShoot : MonoBehaviour {
 	public CameraShaker CameraShaker;
 	void start() {
 		// Anim = GetComponent<Animator>();
-		CameraShaker = GameObject.Find("Camera").GetComponent<CameraShaker>();
+		// CameraShaker = GameObject.Find("Camera").GetComponent<CameraShaker>();
 	}
 	void Awake() {
 		Anim = GameObject.Find("Shoot").GetComponent<Animator>();
@@ -49,32 +47,41 @@ public class playerShoot : MonoBehaviour {
 		// print(ShootDir);
 		// cooldown timer
 		if(CoolDownTimer < 0) CoolDownTimer = 0;
-		if(CoolDownTimer > 0) CoolDownTimer -= Time.deltaTime;
+		if(CoolDownTimer > 0) CoolDownTimer -= Time.deltaTime*5;
 
 
 		//holddown for more bullet force
 		if(Input.GetMouseButtonDown(0) && CoolDownTimer == 0) {
+			FinalShootSpeed = BulletSpeed;
 			SpeedStartTime = Time.time;//time
-			// Anim.SetTrigger("IsShooting");
+			// print("Start time " + SpeedStartTime);
 
 		}
 		if(Input.GetMouseButtonUp(0) && CoolDownTimer == 0) {
 			float delta = Time.time - SpeedStartTime;//time
+			if(delta > 1f) delta = 1f;
+			//float NewTime = Time.time;
+			//float delta = Mathf.Lerp(SpeedStartTime, NewTime, 0.05f);
+			// print("time dif " + delta);
+			// float AdjustedSpeed = BulletSpeed * delta;
 			float AdjustedSpeed = BulletSpeed * delta;
-			if(AdjustedSpeed > 10f)	{AdjustedSpeed = 10f;}
+			//if(AdjustedSpeed > 10f)	{AdjustedSpeed = 10f;}
 			//shootspeed
-			FinalShootSpeed = AdjustedSpeed - 2;
+			FinalShootSpeed = Mathf.Lerp(delta,AdjustedSpeed,0.5f);
+			// FinalShootSpeed = AdjustedSpeed;
 			// print("Final Shoot Speed "+FinalShootSpeed);
-			if(FinalShootSpeed > 100) FinalShootSpeed = 100;
+			// if(FinalShootSpeed > 10) FinalShootSpeed = 10;
 			GameObject Bullet = Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 			ShootVel = CalcLaunchVel();
 			Anim.SetTrigger("IsShooting");
 			CoolDownTimer = CoolDown;
-			// ParticleSystem RockParticles = Instantiate(SpawnParticle,FirePoint.position,FirePoint.rotation);
-			StartCoroutine(CameraShaker.Shake(0.5f, 0.4f));
 
+			//particles and camera shake
+
+			//ParticleSystem RockParticles = Instantiate(SpawnParticle,FirePoint.position,FirePoint.rotation);
+			// StartCoroutine(CameraShaker.Shake(0.5f, 0.4f));
 		}
-
+		// print("cooldown " +CoolDownTimer);
 
 	}
 

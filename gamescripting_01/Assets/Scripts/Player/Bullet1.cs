@@ -44,6 +44,7 @@ public class Bullet1 : MonoBehaviour {
 		int arrayIdx = Random.Range(0, normalBullets.Length);
 		Sprite chooseBulletSprite = normalBullets[arrayIdx];
 		GetComponent<SpriteRenderer>().sprite = chooseBulletSprite;
+		//force passed in
 		GetComponent<Rigidbody2D>().AddForce(ShootDirection * ShootSpeed, ForceMode2D.Impulse);
 		// print(ShootDirection*ShootSpeed);
 	}
