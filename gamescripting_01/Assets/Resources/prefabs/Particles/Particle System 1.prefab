@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 199508889170020410}
   - component: {fileID: 114253490516582442}
   m_Layer: 9
-  m_Name: Rock_Shoot
+  m_Name: Particle System 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
