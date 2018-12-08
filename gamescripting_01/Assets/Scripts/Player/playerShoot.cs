@@ -29,13 +29,19 @@ public class playerShoot : MonoBehaviour {
 
 	public float FinalShootSpeed;
 
-	public CameraShaker CameraShaker;
+	//camera shaker
+	private CameraShake CameraShake;
+
 	void start() {
+		CameraShake = GameObject.FindGameObjectWithTag("Shake").GetComponent<CameraShake>();
 		// Anim = GetComponent<Animator>();
 		// CameraShaker = GameObject.Find("Camera").GetComponent<CameraShaker>();
+		// StartCoroutine(CameraShaker.Shake(0.5f, 0.4f));
+
 	}
 	void Awake() {
 		Anim = GameObject.Find("Shoot").GetComponent<Animator>();
+		// CameraShaker = GameObject.Find("MainCamera").GetComponent<CameraShaker>();
 
 	}
 	void Update() {
@@ -58,6 +64,9 @@ public class playerShoot : MonoBehaviour {
 
 		}
 		if(Input.GetMouseButtonUp(0) && CoolDownTimer == 0) {
+			//camera shake
+			// StartCoroutine(CameraShaker.Shake(0.5f, 0.4f));
+
 			float delta = Time.time - SpeedStartTime;//time
 			if(delta > 1f) delta = 1f;
 			//float NewTime = Time.time;
@@ -77,9 +86,9 @@ public class playerShoot : MonoBehaviour {
 			CoolDownTimer = CoolDown;
 
 			//particles and camera shake
-
 			//ParticleSystem RockParticles = Instantiate(SpawnParticle,FirePoint.position,FirePoint.rotation);
 			// StartCoroutine(CameraShaker.Shake(0.5f, 0.4f));
+
 		}
 		// print("cooldown " +CoolDownTimer);
 

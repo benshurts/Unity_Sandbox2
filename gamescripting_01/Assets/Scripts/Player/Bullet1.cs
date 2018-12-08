@@ -26,6 +26,9 @@ public class Bullet1 : MonoBehaviour {
 	Vector2 ShootVector;
 	Vector2 ShootVelocity;
 	playerShoot playerShoot;
+
+
+
 	private void Awake() {
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo -= 1;
 		ShootSpeed = GameObject.Find("Shooter").GetComponent<playerShoot>().FinalShootSpeed;
@@ -67,9 +70,9 @@ public class Bullet1 : MonoBehaviour {
 		// Destroy(gameObject);
 
 	}
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		Instantiate(ProjectileParticle, transform.position, transform.rotation);
+	void OnCollisionEnter2D(Collision2D other)	{
+
+	Instantiate(ProjectileParticle, transform.position, transform.rotation);
 	}
 
 

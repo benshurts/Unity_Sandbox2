@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971496403517224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.11, y: -0.43, z: 1.2185547}
+  m_LocalPosition: {x: -1.4860432, y: 0.9853946, z: 1.2185547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -223,7 +223,7 @@ MonoBehaviour:
   Ammo: 9
   Impulse: {x: 1, y: 1}
   EnemyDeath: {fileID: 0}
-  ProjectileParticle: {fileID: 1658343835603628, guid: 74d505a4448734c41bea9a8101d0f2a3,
+  ProjectileParticle: {fileID: 1192062943635602, guid: f21b92e662397dd479483ed323ac0643,
     type: 2}
   PointsForKill: 1
   normalBullets:

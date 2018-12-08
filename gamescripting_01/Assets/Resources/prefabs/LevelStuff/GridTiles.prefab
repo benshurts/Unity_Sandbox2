@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2569400268407046282}
   m_Layer: 8
   m_Name: GridTiles
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

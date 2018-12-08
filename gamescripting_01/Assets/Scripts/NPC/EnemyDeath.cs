@@ -11,12 +11,15 @@ public class EnemyDeath : MonoBehaviour {
 	public float Damage;
 	GameObject Bullet;
 	Bullet1 BulletScript;
+	public ParticleSystem SlimeParticle;
 	private void Start() {
 		Health = StartHealth;
 	}
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag.Equals("Bullet")) {
 			Damage = col.relativeVelocity.magnitude;
+			Instantiate(SlimeParticle, transform.position, col.transform.rotation);
+
 			if(Damage > 10) Damage = 10;
 			// print("Damage " + Damage);
 			if(Damage > 5f){
@@ -35,5 +38,7 @@ public class EnemyDeath : MonoBehaviour {
 	}
 	public void Die(){
 		Destroy(gameObject);
+		Instantiate(SlimeParticle, transform.position, transform.rotation);
+
 	}
 }
