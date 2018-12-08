@@ -11,6 +11,13 @@ public class playerShoot : MonoBehaviour {
 	public Transform Target;
 	public float h = 25; //height
 	public float g = -18; //gravity
+
+	public float CoolDown = 5f;
+	public float CoolDownTimer;
+
+	ParticleSystem RockParticles;
+	public ParticleSystem SpawnParticle;
+
 //-------------
 	public Transform FirePoint;
 	public GameObject Projectile;
@@ -39,25 +46,31 @@ public class playerShoot : MonoBehaviour {
 		transform.rotation = Quaternion.Euler(0f,0f,RotZ + OffSet);
 		ShootDir = difference;
 		// print(ShootDir);
+		// cooldown timer
+		if(CoolDownTimer < 0) CoolDownTimer = 0;
+		if(CoolDownTimer > 0) CoolDownTimer -= Time.deltaTime;
 
 
-		// ShootDirection();
 		//holddown for more bullet force
-		if(Input.GetMouseButtonDown(0)) {
+		if(Input.GetMouseButtonDown(0) && CoolDownTimer == 0) {
 			SpeedStartTime = Time.time;//time
 			// Anim.SetTrigger("IsShooting");
+
 		}
-		if(Input.GetMouseButtonUp(0)) {
+		if(Input.GetMouseButtonUp(0) && CoolDownTimer == 0) {
 			float delta = Time.time - SpeedStartTime;//time
 			float AdjustedSpeed = BulletSpeed * delta;
 			if(AdjustedSpeed > 10f)	{AdjustedSpeed = 10f;}
 			//shootspeed
 			FinalShootSpeed = AdjustedSpeed - 2;
-			print("Final Shoot Speed "+FinalShootSpeed);
+			// print("Final Shoot Speed "+FinalShootSpeed);
 			if(FinalShootSpeed > 100) FinalShootSpeed = 100;
 			GameObject Bullet = Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 			ShootVel = CalcLaunchVel();
 			Anim.SetTrigger("IsShooting");
+			CoolDownTimer = CoolDown;
+			ParticleSystem RockParticles = Instantiate(SpawnParticle,FirePoint.position,FirePoint.rotation);
+
 		}
 
 
