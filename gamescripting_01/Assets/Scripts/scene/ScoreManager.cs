@@ -26,8 +26,8 @@ public class ScoreManager : MonoBehaviour {
 		}
 	}
 
-	public static void AddPoints (int PointsToAdd) {
-		Coins += PointsToAdd;
+	public static void AddCoins (int CoinsToAdd) {
+		Coins += CoinsToAdd;
 	}
 
 	//public static void reset

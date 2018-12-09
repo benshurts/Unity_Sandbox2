@@ -1451,7 +1451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f10a5c200d82584b8410b997008f489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointsToAdd: 0
+  CoinValue: 1
 --- !u!1 &936869634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1904,21 @@ Prefab:
     - target: {fileID: 4837289179771446, guid: 9486a25e8d498c84ea9ea7c3adf7fe87, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50442214219003634, guid: 9486a25e8d498c84ea9ea7c3adf7fe87,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 50442214219003634, guid: 9486a25e8d498c84ea9ea7c3adf7fe87,
+        type: 2}
+      propertyPath: m_UseAutoMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50442214219003634, guid: 9486a25e8d498c84ea9ea7c3adf7fe87,
+        type: 2}
+      propertyPath: m_Mass
+      value: 0.19634955
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9486a25e8d498c84ea9ea7c3adf7fe87, type: 2}

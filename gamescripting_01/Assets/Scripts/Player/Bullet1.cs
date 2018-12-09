@@ -60,7 +60,7 @@ public class Bullet1 : MonoBehaviour {
 		if (other.tag == "enemy") {
 			Instantiate(EnemyDeath, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
-			ScoreManager.AddPoints(PointsForKill);
+			// ScoreManager.AddPoints(PointsForKill);
 
 		}
 		if (other.tag == "player") {
