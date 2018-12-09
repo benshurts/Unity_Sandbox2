@@ -2,33 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour {
 
-	public static int Score;
+	public static int Coins;
 
 
-	Text ScoreText;
+	TextMeshProUGUI CoinAmt;
 
 	//Init
 	void Start() {
-		ScoreText = GetComponent<Text>();
+		CoinAmt = GetComponent<TextMeshProUGUI>();
 
-		Score = 0;
+		Coins = 0;
 	}
 
 	//Step
 	void Update() {
-		if (Score < 0) {
-			Score = 0;
-		ScoreText.text = " " + Score;
+		if (Coins < 0) {
+			Coins = 0;
+		CoinAmt.text = ""+Coins;
 		}
 	}
 
 	public static void AddPoints (int PointsToAdd) {
-		Score += PointsToAdd;
+		Coins += PointsToAdd;
 	}
 
 	//public static void reset
-	
+
 }

@@ -8,6 +8,7 @@ TagManager:
   - ground
   - Bullet
   - Shake
+  - Pickups
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - stuff
   - background
   - Enemy
-  - 
+  - Pcikups
   - 
   - 
   - 

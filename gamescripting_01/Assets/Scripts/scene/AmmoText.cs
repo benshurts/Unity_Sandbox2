@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class AmmoText : MonoBehaviour {
 
-	Text AmmoT;
+	TextMeshProUGUI AmmoT;
+
 	public int AmmoAmt;
-	void Start () {		
-		AmmoT = GetComponent<Text>();
+	void Start () {
+		AmmoT = GetComponent<TextMeshProUGUI>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		AmmoAmt = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
-		AmmoT.text = "Ammo " + AmmoAmt;
+		AmmoT.text = ""+AmmoAmt;
 	}
 }
