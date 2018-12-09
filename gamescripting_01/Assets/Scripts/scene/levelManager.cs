@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class levelManager : MonoBehaviour {
 
 
-	//ammo
+	//ammo is managed here
 	public int ammo = 10;
+
+	public GameObject DeathObj;
 	public GameObject CurrentCheckPoint;
 	public Rigidbody2D PC;
 	public GameObject PC2;
@@ -28,19 +30,20 @@ public class levelManager : MonoBehaviour {
 
 	//end game
 	bool GameHasEnded = false;
-
-
 	public float RestartDelay = 1f;
 
-	[Header("Lives")]
+	[Header("Lives and health")]
 	public static int Lives = 3;
-	public int NumOfLives;
-
+	public int NumOfLives = 3;
+	public int LivesRemove = 1;
 	public Image[] LivesArr;
 	public Sprite FullLife;
 	public Sprite EmptyLife;
-
+	private void Start() {
+		PC = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+	}
 	private void Update() {
+
 		//no more lives than num of lives allowed
 		if(Lives > NumOfLives) Lives = NumOfLives;
 		//life manager
@@ -58,17 +61,27 @@ public class levelManager : MonoBehaviour {
 				LivesArr[i].enabled = false;
 			}
 		}
+
 		//ammo stuff
-		if(ammo < 0) {
-			ammo = 0;
+		//------------start coroutine respawn-------------
+		if(ammo <= -1 && Lives > 0) {
+			StartCoroutine ("RespawnPlayerCo");
+		}
+		//----------------stop coroutine---------------
+		if(ammo > -1){
+			StopCoroutine("RespawnPlayer");
+		}
+		//---------------game over -------------------
+		if(ammo <= -1 && Lives <= 0){
+			GameOver();
 		}
 
 	}
 
-
 	//life removal.
 	public static void RemoveLives(int LivesToRemove){
 		Lives -= LivesToRemove;
+		print("Lives"+Lives);
 	}
 
 	// Use this for initialization
@@ -90,33 +103,54 @@ public class levelManager : MonoBehaviour {
 	// public IEnumerator EndGame(){
 
 	// }
-
+	/// <summary>
+	/// Coroutine for respawning player
+	/// </summary>
+	/// <returns></returns>
 	public IEnumerator RespawnPlayerCo(){
-		//Generate Death Particle
-		Instantiate (DeathParticle, PC.transform.position, PC.transform.rotation);
-		//Hide PC
 
-		// PC.enabled = false;
+		//-------------------manage Lives----------------
+		RemoveLives(LivesRemove);
+
+		//----------Generate Death Particle-------------------
+		// Instantiate (DeathParticle, PC.transform.position, PC.transform.rotation);
+
+		//--------Hide PC--------------
+
 		PC2.SetActive(false);
 		PC.GetComponent<Renderer> ().enabled = false;
-		// Gravity Reset
+		PC.GetComponent<Rigidbody2D>().isKinematic = true;
+
+		//---------- Gravity Reset-------------
 		GravityStore = PC.GetComponent<Rigidbody2D>().gravityScale;
 		PC.GetComponent<Rigidbody2D>().gravityScale = 0f;
 		PC.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-		// Point Penalty
+
+		//---------- Point Penalty--------------
 		ScoreManager.AddCoins(-PointPenaltyOnDeath);
-		//Debug Message
+
+		//-----------Debug Message--------------
 		Debug.Log ("PC Respawn");
-		//Respawn Delay
+
+		//-----------------Respawn Delay------------------
 		yield return new WaitForSeconds (RespawnDelay);
-		//Gravity Restore
+		print("yeild return");
+
+		//------------------Gravity Restore------------------
 		PC.GetComponent<Rigidbody2D>().gravityScale = GravityStore;
-		//Match PCs transform position
+
+		//-----------------Match PCs transform position------------------
 		PC.transform.position = CurrentCheckPoint.transform.position;
-		//Show PC
-		// PC.enabled = true;
+
+		//-------------------Show PC-----------------------
 		PC2.SetActive(true);
-		PC.GetComponent<Renderer> ().enabled = true;
-		//Spawn PC
-		Instantiate (RespawnParticle, CurrentCheckPoint.transform.position, CurrentCheckPoint.transform.rotation);	}
+		PC.GetComponent<Renderer>().enabled = true;
+
+		//----------------------Spawn PC---------------------------
+		PC.GetComponent<Rigidbody2D>().isKinematic = false;
+		ammo = 10;
+
+		// Instantiate (RespawnParticle, CurrentCheckPoint.transform.position, CurrentCheckPoint.transform.rotation);
+
+		}
 }

@@ -31,6 +31,7 @@ public class playerShoot : MonoBehaviour {
 
 	//camera shaker
 	private CameraShake CameraShake;
+	int ammo;
 
 	void start() {
 		// Anim = GetComponent<Animator>();
@@ -46,6 +47,7 @@ public class playerShoot : MonoBehaviour {
 
 	}
 	void Update() {
+		ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 
 		Vector2 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 		float RotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -58,7 +60,7 @@ public class playerShoot : MonoBehaviour {
 
 
 		//holddown for more bullet force
-		if(Input.GetMouseButtonDown(0) && CoolDownTimer == 0) {
+		if(Input.GetMouseButtonDown(0) && CoolDownTimer == 0 && ammo >= 0) {
 			FinalShootSpeed = BulletSpeed;
 			SpeedStartTime = Time.time;//time
 			// print("Start time " + SpeedStartTime);

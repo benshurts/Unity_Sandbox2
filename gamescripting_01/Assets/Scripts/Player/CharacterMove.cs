@@ -17,7 +17,8 @@ public class CharacterMove : MonoBehaviour {
 	private bool grounded;
 	public BoxCollider2D PlayerCollider;
 
-
+	public Sprite DeathSprite;
+	Sprite BodySprite;
 	// Use this for initialization
 	void Start () {
 
@@ -32,7 +33,11 @@ public class CharacterMove : MonoBehaviour {
 		// This code makes the character jump
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 		AmmoNum = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
-
+		BodySprite = GameObject.Find("Body").GetComponent<SpriteRenderer>().sprite;
+		// if(Ammo < 0) {
+		// 	// GetComponent<SpriteRenderer>().sprite = DeathSprite;
+		// 	BodySprite = GameObject.Find("Body").GetComponent<SpriteRenderer>().sprite = DeathSprite;
+		// }
 		//jump higher the less ammo you have
 		if(Ammo > 0) {
 			switch (Ammo) {

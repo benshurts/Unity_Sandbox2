@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Shake
   - Pickups
+  - rm
   layers:
   - Default
   - TransparentFX
