@@ -15,7 +15,4 @@ public class ParticleShoot : MonoBehaviour {
 			print("particles");
 		}
 	}
-	// public IEnumerator DoDamage(){
-
-	// }
 }

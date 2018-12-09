@@ -12,6 +12,8 @@ public class playerDeath : MonoBehaviour {
 
 	private CameraShake CameraShake;
 
+	float damageTimer;
+
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +39,16 @@ public class playerDeath : MonoBehaviour {
 		// }
 
 	}
+	void DamagePlayer(){
+		
+		CameraShake.CamShake();
+
+	}
 	// public IEnumerator DoDamageCo(){
 
 	// }
+	private void Update() {
+		
+	}
 
 }
