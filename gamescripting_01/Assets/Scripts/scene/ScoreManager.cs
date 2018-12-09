@@ -14,16 +14,13 @@ public class ScoreManager : MonoBehaviour {
 	//Init
 	void Start() {
 		CoinAmt = GetComponent<TextMeshProUGUI>();
-
 		Coins = 0;
 	}
 
 	//Step
 	void Update() {
-		if (Coins < 0) {
-			Coins = 0;
+		if (Coins < 0) Coins = 0;
 		CoinAmt.text = ""+Coins;
-		}
 	}
 
 	public static void AddCoins (int CoinsToAdd) {
