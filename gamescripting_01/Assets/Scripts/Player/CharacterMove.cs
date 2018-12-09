@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CharacterMove : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class CharacterMove : MonoBehaviour {
 	public BoxCollider2D PlayerCollider;
 
 	public Sprite DeathSprite;
+
+	public levelManager lm;
 	Sprite BodySprite;
 	// Use this for initialization
 	void Start () {
@@ -34,6 +37,7 @@ public class CharacterMove : MonoBehaviour {
 		Ammo = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 		AmmoNum = GameObject.Find("GameManager").GetComponent<levelManager>().ammo;
 		BodySprite = GameObject.Find("Body").GetComponent<SpriteRenderer>().sprite;
+		if(Ammo > 10) Ammo = 10;
 		// if(Ammo < 0) {
 		// 	// GetComponent<SpriteRenderer>().sprite = DeathSprite;
 		// 	BodySprite = GameObject.Find("Body").GetComponent<SpriteRenderer>().sprite = DeathSprite;
@@ -104,6 +108,13 @@ public class CharacterMove : MonoBehaviour {
 		if(Input.GetKey (KeyCode.A)){
 			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
+		}
+	}
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.name == "WinSpot"){
+			lm = GameObject.Find("GameManager").GetComponent<levelManager>();
+			lm.GameOver();
+			// SceneManager.LoadScene("Start_Menu");
 		}
 	}
 }

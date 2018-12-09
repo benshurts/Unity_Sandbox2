@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 61759641864839760}
   - component: {fileID: 114668532859878446}
   - component: {fileID: 114783300483175750}
+  - component: {fileID: 114102414836501736}
+  - component: {fileID: 58861174874881930}
   m_Layer: 12
   m_Name: Enemy_Slime_1
   m_TagString: enemy
@@ -205,6 +207,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58861174874881930
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1129959501213842}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.77802974
 --- !u!61 &61759641864839760
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -296,6 +313,22 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114102414836501736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1129959501213842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b66b87e2fa46f459ce081f1f1ebc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelManager: {fileID: 0}
+  PlayerShoot: {fileID: 0}
+  Ammo: 0
+  SlimeParticle: {fileID: 198726968553301196, guid: 2709c3960cbeaf545af698c4ca25d162,
+    type: 2}
 --- !u!114 &114262658859209816
 MonoBehaviour:
   m_ObjectHideFlags: 1

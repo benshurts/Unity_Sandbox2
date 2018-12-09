@@ -12,6 +12,10 @@ public class ParticleShoot : MonoBehaviour {
 
 		if(Input.GetMouseButtonUp(0) && coolDownTImer == 0){
 			GetComponent<ParticleSystem>().Emit(10);
+			print("particles");
 		}
 	}
+	// public IEnumerator DoDamage(){
+
+	// }
 }
