@@ -17,6 +17,7 @@ public class EnemyDeath : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag.Equals("Bullet")) {
+			// print("Bullet Col");
 			Damage = col.relativeVelocity.magnitude;
 			Instantiate(SlimeParticle, transform.position, col.transform.rotation);
 

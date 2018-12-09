@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class levelManager : MonoBehaviour {
 
@@ -8,7 +10,6 @@ public class levelManager : MonoBehaviour {
 	public int ammo = 10;
 	public GameObject CurrentCheckPoint;
 	public Rigidbody2D PC;
-
 	public GameObject PC2;
 
 	// Particles
@@ -20,31 +21,81 @@ public class levelManager : MonoBehaviour {
 
 
 	//Point Penalty on Death
-	public int PointPenaltyOnDeath;
+	public int PointPenaltyOnDeath = 10;
 
 	// Store Gravity Value
 	private float GravityStore;
 
+	//end game
+	bool GameHasEnded = false;
 
-	// Use this for initialization
-	void Start () {
-		// PC = FindObjectOfType<Rigidbody2D> ();
-	}
 
-	public void RespawnPlayer(){
-		StartCoroutine ("RespawnPlayerCo");
-	}
-	public void Update() {
-		//Debug.Log(ammo);
+	public float RestartDelay = 1f;
+
+	[Header("Lives")]
+	public static int Lives = 3;
+	public int NumOfLives;
+
+	public Image[] LivesArr;
+	public Sprite FullLife;
+	public Sprite EmptyLife;
+
+	private void Update() {
+		//no more lives than num of lives allowed
+		if(Lives > NumOfLives) Lives = NumOfLives;
+		//life manager
+		for(int i = 0; i < LivesArr.Length; i++) {
+			//current lives
+			if(i < Lives){
+				LivesArr[1].sprite = FullLife;
+			} else {
+				LivesArr[i].sprite = EmptyLife;
+			}
+			//extra lives
+			if(i < NumOfLives){
+				LivesArr[i].enabled = true;
+			} else {
+				LivesArr[i].enabled = false;
+			}
+		}
+		//ammo stuff
 		if(ammo < 0) {
 			ammo = 0;
 		}
+
 	}
+
+
+	//life removal.
+	public static void RemoveLives(int LivesToRemove){
+		Lives -= LivesToRemove;
+	}
+
+	// Use this for initialization
+	public void RespawnPlayer(){
+		StartCoroutine ("RespawnPlayerCo");
+	}
+	public void GameOver(){
+		if(GameHasEnded == false){
+			GameHasEnded = true;
+			Debug.Log("Game Over!");
+			Invoke("Restart",RestartDelay);
+		}
+	}
+
+	void Restart(){
+		// SceneManager.LoadScene(SceneManager.GetActiveScene().name);//reload current scene
+		SceneManager.LoadScene("Start_Menu");
+	}
+	// public IEnumerator EndGame(){
+
+	// }
 
 	public IEnumerator RespawnPlayerCo(){
 		//Generate Death Particle
 		Instantiate (DeathParticle, PC.transform.position, PC.transform.rotation);
 		//Hide PC
+
 		// PC.enabled = false;
 		PC2.SetActive(false);
 		PC.GetComponent<Renderer> ().enabled = false;
